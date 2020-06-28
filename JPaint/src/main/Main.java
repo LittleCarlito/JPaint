@@ -2,6 +2,7 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
+import controller.MouseListener;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -11,6 +12,7 @@ import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 public class Main {
     public static void main(String[] args){
@@ -21,6 +23,11 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
+        // Our fancy new mouse listener
+        paintCanvas.addMouseListener(new MouseListener(paintCanvas, appState));
+
+        
+        
         // For example purposes only; remove all lines below from your final project.
 
         try {
@@ -28,11 +35,16 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        
 
         // Filled in rectangle
         Graphics2D graphics2d = paintCanvas.getGraphics2D();
-        graphics2d.setColor(Color.GREEN);
-        graphics2d.fillRect(12, 13, 200, 400);
+        
+        // For printing to screen like an idiot
+        //graphics2d.drawString("I'M PRINTED ON THE SCREEN", 700, 600);
+        
+//        graphics2d.setColor(Color.GREEN);
+//        graphics2d.fillRect(12, 13, 200, 400);
 
         // Outlined rectangle
         graphics2d.setStroke(new BasicStroke(5));

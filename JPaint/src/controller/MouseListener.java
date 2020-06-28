@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Field;
 
 import model.Point;
 import model.persistence.ApplicationState;
@@ -37,7 +38,14 @@ public class MouseListener extends MouseAdapter{
 		// think about passing Graphics2D into this listener to abstract away from this creation
 		// Should be making everything new in one area of code, not throughout
 		Graphics2D graphics2d = paintCanvas.getGraphics2D();
-        graphics2d.setColor(Color.GREEN);
+		Color currC;
+		try {
+		    Field field = Class.forName("java.awt.Color").getField(appState.getActivePrimaryColor().toString());
+		    currC = (Color)field.get(null);
+		} catch (Exception e2) {
+		    currC = null; // Not defined
+		}
+        graphics2d.setColor(currC);
         graphics2d.fillRect(startPoint.getX(), startPoint.getY(), width, height);
 	}
 }

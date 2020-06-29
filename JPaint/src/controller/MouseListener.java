@@ -1,14 +1,12 @@
 package controller;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Field;
 
 import model.Point;
+import model.ShapeFactory;
+import model.interfaces.IShape;
 import model.persistence.ApplicationState;
-import view.gui.PaintCanvas;
 import view.interfaces.PaintCanvasBase;
 
 public class MouseListener extends MouseAdapter{
@@ -31,30 +29,34 @@ public class MouseListener extends MouseAdapter{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		endPoint = new Point(e.getX(), e.getY());
+
+		//NEW CODE
+		Point drawStart = getOrigin();
+		int[] dimArray = getDimension();
+		int width = dimArray[0];
+		int height = dimArray[1];
+		ShapePrinter testPrint = new ShapePrinter(paintCanvas);
+		IShape testShape = new ShapeFactory(appState, appState.getActivePrimaryColor(), drawStart, width, height).getShape();
+		testPrint.draw(testShape);
+		
+		//DEBUG
+		System.out.println("<DEBUG> X:" + drawStart.getX() + " Y:" + drawStart.getY());
+		System.out.println("<DEBUG> New shape is a " + testShape.getType().toString() + " and is the color " + testShape.getColor().toString());
+	}
+	
+	private Point getOrigin() {
+		int minX = Math.min(startPoint.getX(), endPoint.getX());
+		int minY = Math.min(startPoint.getY(), endPoint.getY());
+		return new Point(minX, minY);
+	}
+	
+	private int[] getDimension() {
 		int minX = Math.min(startPoint.getX(), endPoint.getX());
 		int maxX = Math.max(startPoint.getX(), endPoint.getX());
 		int minY = Math.min(startPoint.getY(), endPoint.getY());
 		int maxY = Math.max(startPoint.getY(), endPoint.getY());
 		int width = maxX - minX;
 		int height = maxY - minY;
-		Point drawStart = new Point(minX, maxY);
-
-		
-		
-		// Hard set for rectangle only; should make this based off of "shape" class instead
-		// Can't draw rectangles clicking and dragging mouse to left or up
-		// think about passing Graphics2D into this listener to abstract away from this creation
-		// Should be making everything new in one area of code, not throughout
-		Graphics2D graphics2d = paintCanvas.getGraphics2D();
-		System.out.println("<DEBUG> X:" + drawStart.getX() + " Y:" + drawStart.getY());
-		Color currC;
-		try {
-		    Field field = Class.forName("java.awt.Color").getField(appState.getActivePrimaryColor().toString());
-		    currC = (Color)field.get(null);
-		} catch (Exception e2) {
-		    currC = null; // Not defined
-		}
-        graphics2d.setColor(currC);
-        graphics2d.fillRect(minX, minY, width, height);
+		return new int[]{width, height};
 	}
 }

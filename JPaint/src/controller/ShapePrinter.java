@@ -9,15 +9,14 @@ import model.ShapeColor;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
-public class ShapePrinter implements IPrinter{
+public class ShapePrinter{
 	private PaintCanvasBase paintCanvas;
 	
 	public ShapePrinter(PaintCanvasBase baseCanvas) {
 		paintCanvas = baseCanvas;
 	}
 
-	@Override
-	public void draw(IShape Shape) {
+	public void print(IShape Shape) {
 		ShapeColor sColor = Shape.getColor();
 		Point sOrigin = Shape.getOrigin();
 		int sWidth = Shape.getWidth();

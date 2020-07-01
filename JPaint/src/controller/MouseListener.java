@@ -29,7 +29,7 @@ public class MouseListener extends MouseAdapter{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		endPoint = new Point(e.getX(), e.getY());
-		
+		// Create Mouse Click Event
 		IMouseEvent newEvent = new EventFactory(startPoint, endPoint, paintCanvas, appState).getEvent();
 		newEvent.Execute();
 	}

@@ -1,26 +1,35 @@
 package event;
 
 import model.Point;
+import model.ShapeColor;
 import model.ShapeFactory;
+import model.ShapeType;
+import model.StartAndEndPointMode;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-public class EventFactory{
+public class EventFactory implements IEventFactory{
 	private Point startPoint;
 	private Point endPoint;
 	private PaintCanvasBase eventCanvas;
-	private ApplicationState appState;
+	private ShapeType eventShapeType;
+	private ShapeColor eventShapeColor;
+	private StartAndEndPointMode eventMode;
 	
 	public EventFactory(Point baseStartPoint, Point baseEndPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
 		startPoint = baseStartPoint;
 		endPoint = baseEndPoint;
 		eventCanvas = baseCanvas;
-		appState = baseState;
+		eventShapeType = baseState.getActiveShapeType();
+		eventShapeColor = baseState.getActivePrimaryColor();
+		eventMode = baseState.getActiveStartAndEndPointMode();
 	}
+	
+	@Override
 	public IMouseEvent getEvent() {
 		//Gonna set up to just do DrawEvents for now
-		if(!appState.getActiveStartAndEndPointMode().equals(null)) {
+		if(!eventMode.equals(null)) {
 			int minX = Math.min(startPoint.getX(), endPoint.getX());
 			int maxX = Math.max(startPoint.getX(), endPoint.getX());
 			int minY = Math.min(startPoint.getY(), endPoint.getY());
@@ -28,7 +37,7 @@ public class EventFactory{
 			Point origin = new Point(minX, minY);
 			int width = maxX - minX;
 			int height = maxY - minY;
-			IShape newShape = new ShapeFactory(appState.getActivePrimaryColor(), appState.getActiveShapeType(), origin, width, height).getShape();
+			IShape newShape = new ShapeFactory(eventShapeType, eventShapeColor, origin, width, height).getShape();
 			return new DrawEvent(newShape, eventCanvas);
 		}
 		return null;

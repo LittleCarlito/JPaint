@@ -2,14 +2,15 @@ package model;
 
 import model.interfaces.IShape;
 
-public class Rectangle implements IShape{
-	private ShapeType sType = ShapeType.RECTANGLE;
+public class Shape implements IShape{
+	private ShapeType sType;
 	private ShapeColor sColor;
 	private Point sOrigin;
 	private int sWidth;
 	private int sHeight;
 	
-	public Rectangle (ShapeColor newColor, Point newOrigin, int newWidth, int newHeight) {
+	public Shape (ShapeType newType, ShapeColor newColor, Point newOrigin, int newWidth, int newHeight) {
+		sType = newType;
 		sColor = newColor;
 		sOrigin = newOrigin;
 		sWidth = newWidth;

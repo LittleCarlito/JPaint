@@ -19,7 +19,7 @@ import view.interfaces.IUiModule;
 public class Main {
     public static void main(String[] args){
     	ShapeList<IShape> shapeList = new ShapeList<IShape>();
-        PaintCanvas paintCanvas = new PaintCanvas(new ShapeList<IShape>());
+        PaintCanvasBase paintCanvas = new PaintCanvas(new ShapeList<IShape>());
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);

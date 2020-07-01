@@ -3,8 +3,8 @@ package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import event.EventFactory;
-import event.IMouseEvent;
+import controller.event.EventFactory;
+import controller.interfaces.IMouseEvent;
 import model.Point;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
@@ -12,7 +12,6 @@ import view.interfaces.PaintCanvasBase;
 public class MouseListener extends MouseAdapter{
 	
 	private Point startPoint;
-	private Point endPoint;
 	private PaintCanvasBase paintCanvas;
 	private ApplicationState appState;
 	
@@ -28,9 +27,11 @@ public class MouseListener extends MouseAdapter{
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		endPoint = new Point(e.getX(), e.getY());
+		Point endPoint = new Point(e.getX(), e.getY());
+		
 		// Create Mouse Click Event
-		IMouseEvent newEvent = new EventFactory(startPoint, endPoint, paintCanvas, appState).getEvent();
+		IMouseEvent newEvent;
+		newEvent = new EventFactory(startPoint, endPoint, paintCanvas, appState).getEvent();
 		newEvent.Execute();
 	}
 }

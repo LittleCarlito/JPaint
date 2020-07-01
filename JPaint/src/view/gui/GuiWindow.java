@@ -13,7 +13,8 @@ import view.EventName;
 import java.awt.*;
 
 public class GuiWindow extends JFrame implements IGuiWindow {
-    private final int defaultWidth = 1250;
+	private static final long serialVersionUID = 2007858924596887018L;
+	private final int defaultWidth = 1250;
     private final int defaultHeight = 800;
     private final String defaultTitle = "JPaint";
     private final Insets defaultButtonDimensions 

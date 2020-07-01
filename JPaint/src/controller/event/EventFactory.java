@@ -1,5 +1,7 @@
-package event;
+package controller.event;
 
+import controller.interfaces.IEventFactory;
+import controller.interfaces.IMouseEvent;
 import model.Point;
 import model.ShapeColor;
 import model.ShapeFactory;
@@ -27,9 +29,8 @@ public class EventFactory implements IEventFactory{
 	}
 	
 	@Override
-	public IMouseEvent getEvent() {
-		//Gonna set up to just do DrawEvents for now
-		if(!eventMode.equals(null)) {
+	public IMouseEvent getEvent(){
+		if (eventMode.equals(StartAndEndPointMode.DRAW)) {
 			int minX = Math.min(startPoint.getX(), endPoint.getX());
 			int maxX = Math.max(startPoint.getX(), endPoint.getX());
 			int minY = Math.min(startPoint.getY(), endPoint.getY());
@@ -40,7 +41,10 @@ public class EventFactory implements IEventFactory{
 			IShape newShape = new ShapeFactory(eventShapeType, eventShapeColor, origin, width, height).getShape();
 			return new DrawEvent(newShape, eventCanvas);
 		}
-		return null;
+		else {
+			//Add more cases here as they are required
+			return null;
+		}
 	}
 
 }

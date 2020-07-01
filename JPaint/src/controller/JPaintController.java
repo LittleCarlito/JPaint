@@ -1,5 +1,6 @@
 package controller;
 
+import controller.interfaces.IJPaintController;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;

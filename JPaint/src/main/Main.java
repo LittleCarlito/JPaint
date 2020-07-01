@@ -1,8 +1,10 @@
 package main;
 
-import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MouseListener;
+import controller.interfaces.IJPaintController;
+import model.ShapeList;
+import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -11,12 +13,13 @@ import view.interfaces.IGuiWindow;
 import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
+//import java.awt.*;
+//import java.awt.event.MouseAdapter;
 
 public class Main {
     public static void main(String[] args){
-        PaintCanvasBase paintCanvas = new PaintCanvas();
+    	ShapeList<IShape> shapeList = new ShapeList<IShape>();
+        PaintCanvas paintCanvas = new PaintCanvas(new ShapeList<IShape>());
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);

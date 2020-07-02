@@ -3,8 +3,9 @@ package controller.event;
 import controller.interfaces.IEventFactory;
 import controller.interfaces.IMouseEvent;
 import model.Point;
+import model.Shape;
 import model.ShapeColor;
-import model.ShapeFactory;
+import model.ShapeShadingType;
 import model.ShapeType;
 import model.StartAndEndPointMode;
 import model.interfaces.IShape;
@@ -17,6 +18,7 @@ public class EventFactory implements IEventFactory{
 	private PaintCanvasBase eventCanvas;
 	private ShapeType eventShapeType;
 	private ShapeColor eventShapeColor;
+	private ShapeShadingType eventShadeType;
 	private StartAndEndPointMode eventMode;
 	
 	public EventFactory(Point baseStartPoint, Point baseEndPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
@@ -25,6 +27,7 @@ public class EventFactory implements IEventFactory{
 		eventCanvas = baseCanvas;
 		eventShapeType = baseState.getActiveShapeType();
 		eventShapeColor = baseState.getActivePrimaryColor();
+		eventShadeType = baseState.getActiveShapeShadingType();
 		eventMode = baseState.getActiveStartAndEndPointMode();
 	}
 	
@@ -38,7 +41,7 @@ public class EventFactory implements IEventFactory{
 			Point origin = new Point(minX, minY);
 			int width = maxX - minX;
 			int height = maxY - minY;
-			IShape newShape = new ShapeFactory(eventShapeType, eventShapeColor, origin, width, height).getShape();
+			IShape newShape = new Shape(eventShapeType, eventShapeColor, eventShadeType, origin, width, height);
 			return new DrawEvent(newShape, eventCanvas);
 		}
 		else {

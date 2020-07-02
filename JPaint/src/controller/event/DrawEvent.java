@@ -1,13 +1,13 @@
 package controller.event;
 
-import controller.ShapePrinter;
+import controller.Printer.PrintFactory;
 import controller.interfaces.IMouseEvent;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
 public class DrawEvent implements IMouseEvent{
 	private PaintCanvasBase eventCanvas;
-	private ShapePrinter eventPrinter;
+	private PrintFactory eventPrinter;
 	private IShape eventShape;
 	
 	public DrawEvent(IShape nShape, PaintCanvasBase baseCanvas) {
@@ -17,7 +17,7 @@ public class DrawEvent implements IMouseEvent{
 
 	public void Execute() {
 		eventCanvas.add(eventShape);
-		eventPrinter = new ShapePrinter(eventCanvas);
+		eventPrinter = new PrintFactory(eventCanvas);
 		eventPrinter.print();
 	}
 }

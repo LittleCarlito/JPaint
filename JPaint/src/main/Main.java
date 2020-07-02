@@ -1,5 +1,9 @@
 package main;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import controller.JPaintController;
 import controller.MouseListener;
 import controller.interfaces.IJPaintController;
@@ -12,9 +16,6 @@ import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
 import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
-
-//import java.awt.*;
-//import java.awt.event.MouseAdapter;
 
 public class Main {
     public static void main(String[] args){
@@ -41,7 +42,7 @@ public class Main {
         
 
         // Filled in rectangle
-        //Graphics2D graphics2d = paintCanvas.getGraphics2D();
+        Graphics2D graphics2d = paintCanvas.getGraphics2D();
         
         // For printing to screen like an idiot
         //graphics2d.drawString("I'M PRINTED ON THE SCREEN", 700, 600);
@@ -50,9 +51,9 @@ public class Main {
 //        graphics2d.fillRect(12, 13, 200, 400);
 
         // Outlined rectangle
-//        graphics2d.setStroke(new BasicStroke(5));
-//        graphics2d.setColor(Color.BLUE);
-//        graphics2d.drawRect(12, 13, 200, 400);
+        graphics2d.setStroke(new BasicStroke(5));
+        graphics2d.setColor(Color.BLUE);
+        graphics2d.drawRect(12, 13, 200, 400);
 //
 //        // Selected Shape
 //        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);

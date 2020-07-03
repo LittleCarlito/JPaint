@@ -5,14 +5,16 @@ import model.interfaces.IShape;
 public class Shape implements IShape{
 	private ShapeType sType;
 	private ShapeColor sColor;
+	private ShapeColor sSecondColor;
 	private ShapeShadingType sShade;
 	private Point sOrigin;
 	private int sWidth;
 	private int sHeight;
 	
-	public Shape (ShapeType newType, ShapeColor newColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
+	public Shape (ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
 		sType = newType;
 		sColor = newColor;
+		sSecondColor = newSecondColor;
 		sShade = newShade;
 		sOrigin = newOrigin;
 		sWidth = newWidth;
@@ -42,5 +44,10 @@ public class Shape implements IShape{
 	@Override
 	public int getHeight() {
 		return sHeight;
+	}
+
+	@Override
+	public ShapeColor getSecondColor() {
+		return sSecondColor;
 	}
 }

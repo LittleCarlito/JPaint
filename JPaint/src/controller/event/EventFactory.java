@@ -1,5 +1,6 @@
 package controller.event;
 
+import controller.Printer.PointConverter;
 import controller.interfaces.IEventFactory;
 import controller.interfaces.IMouseEvent;
 import model.Point;
@@ -18,6 +19,7 @@ public class EventFactory implements IEventFactory{
 	private PaintCanvasBase eventCanvas;
 	private ShapeType eventShapeType;
 	private ShapeColor eventShapeColor;
+	private ShapeColor eventSecondShapeColor;
 	private ShapeShadingType eventShadeType;
 	private StartAndEndPointMode eventMode;
 	
@@ -27,6 +29,7 @@ public class EventFactory implements IEventFactory{
 		eventCanvas = baseCanvas;
 		eventShapeType = baseState.getActiveShapeType();
 		eventShapeColor = baseState.getActivePrimaryColor();
+		eventSecondShapeColor = baseState.getActiveSecondaryColor();
 		eventShadeType = baseState.getActiveShapeShadingType();
 		eventMode = baseState.getActiveStartAndEndPointMode();
 	}
@@ -34,14 +37,10 @@ public class EventFactory implements IEventFactory{
 	@Override
 	public IMouseEvent getEvent(){
 		if (eventMode.equals(StartAndEndPointMode.DRAW)) {
-			int minX = Math.min(startPoint.getX(), endPoint.getX());
-			int maxX = Math.max(startPoint.getX(), endPoint.getX());
-			int minY = Math.min(startPoint.getY(), endPoint.getY());
-			int maxY = Math.max(startPoint.getY(), endPoint.getY());
-			Point origin = new Point(minX, minY);
-			int width = maxX - minX;
-			int height = maxY - minY;
-			IShape newShape = new Shape(eventShapeType, eventShapeColor, eventShadeType, origin, width, height);
+			PointConverter.getInstance();
+			Point origin = PointConverter.getOrigin(startPoint, endPoint);
+			int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
+			IShape newShape = new Shape(eventShapeType, eventShapeColor, eventSecondShapeColor, eventShadeType, origin, dimensions[0], dimensions[1]);
 			return new DrawEvent(newShape, eventCanvas);
 		}
 		else {

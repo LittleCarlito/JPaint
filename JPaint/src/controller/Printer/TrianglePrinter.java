@@ -3,39 +3,34 @@ package controller.Printer;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
+import model.Point;
 import model.ShapeShadingType;
 import model.interfaces.IShape;
 
 public class TrianglePrinter extends ShapePrinter{
-	private int[] xDimensions = new int[3];
-	private int[] yDimensions = new int[3];
 
 	public TrianglePrinter(IShape newShape, Graphics2D baseGraphics) {
 		super(newShape, baseGraphics);
 	}
 
 	public void print() {
-		setDimensions();
-		ShapeShadingType sType = getShade();
-		if(sType.equals(ShapeShadingType.FILLED_IN)) {
-			graphics2d.fillPolygon(xDimensions, yDimensions, 3);
+		setPrimaryColor();
+		ShapeShadingType shadeType = getShade();
+		PointConverter.getInstance();
+		int[][] dimensions = PointConverter.getTriangle(getOrigin(), getWidth(), getHeight());
+		if(shadeType.equals(ShapeShadingType.FILLED_IN)) {
+			graphics2d.fillPolygon(dimensions[0], dimensions[1], 3);
 		}
-		else if(sType.equals(ShapeShadingType.OUTLINE)) {
+		else if(shadeType.equals(ShapeShadingType.OUTLINE)) {
 	        graphics2d.setStroke(new BasicStroke(5));
-	        graphics2d.drawPolygon(xDimensions, yDimensions, 3);
+	        graphics2d.drawPolygon(dimensions[0], dimensions[1], 3);
 		}
-	}
-
-	private void setDimensions() {
-		int x = getOrigin().getX();
-		int y = getOrigin().getY();
-		int sWidth = getWidth();
-		int sHeight = getHeight();
-		xDimensions[0] = x;
-		xDimensions[1] = x + (sWidth / 2);
-		xDimensions[2] = x + sWidth;
-		yDimensions[0] = y + sHeight;
-		yDimensions[1] = y;
-		yDimensions[2] = y + sHeight;
+		else if(shadeType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)) {
+			int[][] dimensions2 = PointConverter.getTriangle(new Point(getOrigin().getX() - 1, getOrigin().getY() - 1), getWidth() - 2, getHeight() - 2);
+			graphics2d.fillPolygon(dimensions2[0], dimensions2[1], 3);
+			setSecondaryColor();
+			graphics2d.setStroke(new BasicStroke(5));
+			graphics2d.drawPolygon(dimensions2[0], dimensions2[1], 3);
+		}
 	}
 }

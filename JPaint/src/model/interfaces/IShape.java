@@ -8,6 +8,7 @@ import model.ShapeType;
 public interface IShape {
 	public ShapeType getType();
 	public ShapeColor getColor();
+	public ShapeColor getSecondColor();
 	public ShapeShadingType getShade();
 	public Point getOrigin();
 	public int getWidth();

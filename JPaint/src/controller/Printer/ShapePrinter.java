@@ -13,6 +13,7 @@ import model.interfaces.IShape;
 public abstract class ShapePrinter implements IPrinter {
 	protected Graphics2D graphics2d;
 	private Color color;
+	private Color color2;
 	private ShapeShadingType shade;
 	private Point origin;
 	private int width;
@@ -24,19 +25,19 @@ public abstract class ShapePrinter implements IPrinter {
 		width = shape.getWidth();
 		height = shape.getHeight();
 		ShapeColor sColor = shape.getColor();
+		ShapeColor sColor2 = shape.getSecondColor();
 		shade = shape.getShade();
-		Color currC;
-		try {
-			Field field = Class.forName("java.awt.Color").getField(sColor.toString());
-			currC = (Color) field.get(null);
-		} catch (Exception e2) {
-			currC = null; // Not defined
-		}
-		color = currC;
+		ColorConverter.getInstance();
+		color = ColorConverter.getColor(sColor);
+		color2 = ColorConverter.getColor(sColor2);
 	}
 	
-	protected void setColor() {
+	protected void setPrimaryColor() {
 		graphics2d.setColor(color);
+	}
+	
+	protected void setSecondaryColor() {
+		graphics2d.setColor(color2);
 	}
 	
 	protected ShapeShadingType getShade() {

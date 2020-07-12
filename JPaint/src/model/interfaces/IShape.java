@@ -6,6 +6,7 @@ import model.ShapeShadingType;
 import model.ShapeType;
 
 public interface IShape {
+	public int getID();
 	public ShapeType getType();
 	public ShapeColor getColor();
 	public ShapeColor getSecondColor();
@@ -14,4 +15,5 @@ public interface IShape {
 	public int getWidth();
 	public int getHeight();
 	public IShape getClone(Point newOrigin);
+	public boolean equals(Object obj);
 }

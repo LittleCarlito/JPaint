@@ -41,6 +41,5 @@ public class MouseListener extends MouseAdapter{
 		// Create Mouse Click Event
 		IMouseEvent newEvent = EventFactory.getEvent(startPoint, endPoint, paintCanvas, appState);
 		newEvent.Execute();
-		System.out.println(paintCanvas.getSelect().size());
 	}
 }

@@ -3,6 +3,7 @@ package model;
 import model.interfaces.IShape;
 
 public class Shape implements IShape{
+	private static int sID;
 	private ShapeType sType;
 	private ShapeColor sColor;
 	private ShapeColor sSecondColor;
@@ -11,7 +12,8 @@ public class Shape implements IShape{
 	private int sWidth;
 	private int sHeight;
 	
-	public Shape (ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
+	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
+		sID = newID;
 		sType = newType;
 		sColor = newColor;
 		sSecondColor = newSecondColor;
@@ -19,6 +21,11 @@ public class Shape implements IShape{
 		sOrigin = newOrigin;
 		sWidth = newWidth;
 		sHeight = newHeight;
+	}
+	
+	@Override
+	public int getID() {
+		return sID;
 	}
 	
 	@Override
@@ -53,21 +60,7 @@ public class Shape implements IShape{
 
 	@Override
 	public IShape getClone(Point newOrigin) {
-		return new Shape(sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((sColor == null) ? 0 : sColor.hashCode());
-		result = prime * result + sHeight;
-		result = prime * result + ((sOrigin == null) ? 0 : sOrigin.hashCode());
-		result = prime * result + ((sSecondColor == null) ? 0 : sSecondColor.hashCode());
-		result = prime * result + ((sShade == null) ? 0 : sShade.hashCode());
-		result = prime * result + ((sType == null) ? 0 : sType.hashCode());
-		result = prime * result + sWidth;
-		return result;
+		return new Shape(sID, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
 	}
 
 	@Override
@@ -79,24 +72,12 @@ public class Shape implements IShape{
 		if (getClass() != obj.getClass())
 			return false;
 		Shape other = (Shape) obj;
-		if (sColor != other.sColor)
+		if (sID == other.getID()) {
+			return true;
+		}
+		else {
 			return false;
-		if (sHeight != other.sHeight)
-			return false;
-		if (sOrigin == null) {
-			if (other.sOrigin != null)
-				return false;
-		} else if (!sOrigin.equals(other.sOrigin))
-			return false;
-		if (sSecondColor != other.sSecondColor)
-			return false;
-		if (sShade != other.sShade)
-			return false;
-		if (sType != other.sType)
-			return false;
-		if (sWidth != other.sWidth)
-			return false;
-		return true;
+		}
 	}
 	
 	

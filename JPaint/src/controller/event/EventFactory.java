@@ -10,6 +10,7 @@ import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 public class EventFactory{
+	private static int sID = 0;
 	
 	public EventFactory() {
 	}
@@ -18,7 +19,8 @@ public class EventFactory{
 		PointConverter.getInstance();
 		Point origin = PointConverter.getOrigin(startPoint, endPoint);
 		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
-		IShape newShape = new Shape(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions[0], dimensions[1]);
+		IShape newShape = new Shape(sID, baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions[0], dimensions[1]);
+		sID++;
 		if (baseState.getActiveStartAndEndPointMode().equals(StartAndEndPointMode.DRAW)) {
 			return new DrawEvent(newShape, baseCanvas);
 		}

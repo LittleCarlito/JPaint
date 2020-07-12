@@ -38,4 +38,8 @@ public class PaintCanvas extends PaintCanvasBase {
 	public List<IShape> getSelect() {
 		return selectList;
 	}
+	
+	public void deSelect() {
+		
+	}
 }

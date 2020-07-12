@@ -20,6 +20,7 @@ public class SelectEvent implements IMouseEvent{
 	
 	@Override
 	public void Execute() {
+		eventCanvas.deSelect();
 		Rectangle r1 = new Rectangle(eventShape.getOrigin().getX(), eventShape.getOrigin().getY(), eventShape.getWidth(), eventShape.getHeight());
 		for(IShape shape : shapeList) {
 			Rectangle r2 = new Rectangle(shape.getOrigin().getX(), shape.getOrigin().getY(), shape.getWidth(), shape.getHeight());

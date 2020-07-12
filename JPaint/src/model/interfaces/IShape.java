@@ -13,4 +13,5 @@ public interface IShape {
 	public Point getOrigin();
 	public int getWidth();
 	public int getHeight();
+	public IShape getClone(Point newOrigin);
 }

@@ -3,11 +3,11 @@ package main;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import controller.JPaintController;
 import controller.MouseListener;
 import controller.interfaces.IJPaintController;
-import model.ShapeList;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
@@ -19,7 +19,7 @@ import view.interfaces.IUiModule;
 
 public class Main {
     public static void main(String[] args){
-        PaintCanvasBase paintCanvas = new PaintCanvas(new ShapeList<IShape>());
+        PaintCanvasBase paintCanvas = new PaintCanvas(new ArrayList<IShape>(), new ArrayList<IShape>());
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);

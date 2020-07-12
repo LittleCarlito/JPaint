@@ -1,11 +1,12 @@
 package view.interfaces;
 
-import javax.swing.*;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
-import model.ShapeList;
+import javax.swing.JComponent;
+
 import model.interfaces.IShape;
-
-import java.awt.*;
 
 public abstract class PaintCanvasBase extends JComponent {
 	private static final long serialVersionUID = 7176229741060026776L;
@@ -14,5 +15,9 @@ public abstract class PaintCanvasBase extends JComponent {
 	
 	public abstract void add(IShape shape);
 	
-	public abstract ShapeList<IShape> getShapes();
+	public abstract void select(IShape shape);
+	
+	public abstract List<IShape> getShapes();
+	
+	public abstract List<IShape> getSelect();
 }

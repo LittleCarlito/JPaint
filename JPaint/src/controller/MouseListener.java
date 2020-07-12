@@ -16,6 +16,7 @@ public class MouseListener extends MouseAdapter{
 	private ApplicationState appState;
 	
 	public MouseListener(PaintCanvasBase baseCanvas, ApplicationState baseState) {
+		new EventFactory();
 		paintCanvas = baseCanvas;
 		appState = baseState;
 	}
@@ -23,6 +24,7 @@ public class MouseListener extends MouseAdapter{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		startPoint = new Point(e.getX(), e.getY());
+		paintCanvas.repaint();
 	}
 	
 	@Override
@@ -30,8 +32,7 @@ public class MouseListener extends MouseAdapter{
 		Point endPoint = new Point(e.getX(), e.getY());
 		
 		// Create Mouse Click Event
-		IMouseEvent newEvent;
-		newEvent = new EventFactory(startPoint, endPoint, paintCanvas, appState).getEvent();
+		IMouseEvent newEvent = EventFactory.getEvent(startPoint, endPoint, paintCanvas, appState);
 		newEvent.Execute();
 	}
 }

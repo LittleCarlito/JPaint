@@ -21,5 +21,7 @@ public abstract class PaintCanvasBase extends JComponent {
 	
 	public abstract List<IShape> getSelect();
 	
+	public abstract void cleanShapeList(List<IShape> shape);
+	
 	public abstract void deSelect();
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,7 +26,6 @@ public class MouseListener extends MouseAdapter{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		startPoint = new Point(e.getX(), e.getY());
-		//paintCanvas.repaint();
 		//Put stuff to clear out select list at the start of every mouse click
 			//Should remove them from select list and put them back in the shape list
 			//Could make a seed for Shape object to get global draw order and sort array lists by that, decides who gets printed first
@@ -40,6 +41,10 @@ public class MouseListener extends MouseAdapter{
 		
 		// Create Mouse Click Event
 		IMouseEvent newEvent = EventFactory.getEvent(startPoint, endPoint, paintCanvas, appState);
+		
+		Graphics2D graphics2d = paintCanvas.getGraphics2D();      
+		graphics2d.setColor(Color.WHITE);
+		graphics2d.fillRect(0, 0, 2000, 1000);
 		newEvent.Execute();
 	}
 }

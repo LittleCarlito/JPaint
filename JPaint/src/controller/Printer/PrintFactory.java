@@ -17,6 +17,7 @@ public class PrintFactory implements IPrinter{
 	}
 
 	public void print() {
+		System.out.println("Within PrintFactory\nCount of shapeList: " + paintCanvas.getShapes().size() + "\nCount of selectList: " + paintCanvas.getSelect().size() + "\n");
 		screenOutput(paintCanvas.getShapes());
 		screenOutput(paintCanvas.getSelect());
 	}

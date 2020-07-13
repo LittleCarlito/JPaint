@@ -39,7 +39,20 @@ public class PaintCanvas extends PaintCanvasBase {
 		return selectList;
 	}
 	
+	public void cleanShapeList(List<IShape> removeList) {
+		for(IShape shape : removeList) {
+			if(shapeList.contains(shape)) {
+				shapeList.remove(shape);
+			}
+		}
+	}
+
 	public void deSelect() {
-		
+		for(IShape shape : selectList) {
+			shapeList.add(shape);
+		}
+		for(int i = selectList.size() - 1; i >= 0; i--) {
+			selectList.remove(i);
+		}
 	}
 }

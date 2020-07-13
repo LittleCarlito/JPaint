@@ -22,6 +22,7 @@ public class MoveEvent implements IMouseEvent{
 	}
 
 	public void Execute() {
+//		System.out.println("Inside Mouse Event -\nShape Count: " + eventCanvas.getShapes().size() + "\nSelect Count: " + selectShapeList.size());
 		for(int i = 0; i < selectShapeList.size(); i++) {
 			IShape shape = selectShapeList.get(i);
 			Point newOrigin = new Point(shape.getOrigin().getX() - (startPoint.getX() - endPoint.getX()), shape.getOrigin().getY() - (startPoint.getY() - endPoint.getY()));

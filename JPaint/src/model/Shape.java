@@ -3,7 +3,7 @@ package model;
 import model.interfaces.IShape;
 
 public class Shape implements IShape{
-	private static int sID;
+	private int sID;
 	private ShapeType sType;
 	private ShapeColor sColor;
 	private ShapeColor sSecondColor;

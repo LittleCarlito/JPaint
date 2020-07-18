@@ -28,8 +28,8 @@ public class MoveEvent implements IMouseEvent{
 			Point newOrigin = new Point(shape.getOrigin().getX() - (startPoint.getX() - endPoint.getX()), shape.getOrigin().getY() - (startPoint.getY() - endPoint.getY()));
 			IShape newShape = shape.getClone(newOrigin);
 			selectShapeList.set(i, newShape);
-			PrintFactory eventPrinter = new PrintFactory(eventCanvas);
-			eventPrinter.print();
+			PrintFactory.getInstance();
+			PrintFactory.print(eventCanvas);
 		}
 	}
 

@@ -31,8 +31,8 @@ public class SelectEvent implements IMouseEvent{
 				}
 		}
 		eventCanvas.cleanShapeList(eventCanvas.getSelect());
-		PrintFactory eventPrinter = new PrintFactory(eventCanvas);
-		eventPrinter.print();
+		PrintFactory.getInstance();
+		PrintFactory.print(eventCanvas);
 	}
 
 }

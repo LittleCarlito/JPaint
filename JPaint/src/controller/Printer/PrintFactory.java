@@ -11,13 +11,19 @@ import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
 public class PrintFactory{
-	private PaintCanvasBase paintCanvas;
+	private static PrintFactory obj = null;
 	
-	public PrintFactory(PaintCanvasBase baseCanvas) {
-		paintCanvas = baseCanvas;
+	private PrintFactory() {
+	}
+	
+	public static PrintFactory getInstance() {
+		if(obj == null) {
+			obj = new PrintFactory();
+		}
+		return obj;		
 	}
 
-	public void print() {
+	public static void print(PaintCanvasBase paintCanvas) {
 		System.out.println("Within PrintFactory\nCount of shapeList: " + paintCanvas.getShapes().size() + "\nCount of selectList: " + paintCanvas.getSelect().size() + "\n");
 		Graphics2D graphics2d = paintCanvas.getGraphics2D();      
 		graphics2d.setColor(Color.WHITE);
@@ -26,7 +32,7 @@ public class PrintFactory{
 		screenOutput(paintCanvas.getSelect());
 	}
 	
-	private void screenOutput(List<IShape> shapeList) {
+	private static void screenOutput(List<IShape> shapeList) {
 		for (IShape shape : shapeList) {
 			shape.print();
 		}

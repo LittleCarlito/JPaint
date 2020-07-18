@@ -9,9 +9,10 @@ import model.Point;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.interfaces.IShape;
+import view.interfaces.PaintCanvasBase;
 
 public abstract class ShapePrinter implements IPrinter {
-	protected Graphics2D graphics2d;
+	private PaintCanvasBase canvas;
 	private Color color;
 	private Color color2;
 	private ShapeShadingType shade;
@@ -19,8 +20,8 @@ public abstract class ShapePrinter implements IPrinter {
 	private int width;
 	private int height;
 	
-	public ShapePrinter(IShape shape, Graphics2D baseGraphics) {
-		graphics2d = baseGraphics;
+	public ShapePrinter(IShape shape, PaintCanvasBase newCanvas) {
+		canvas = newCanvas;
 		origin = shape.getOrigin();
 		width = shape.getWidth();
 		height = shape.getHeight();
@@ -30,14 +31,6 @@ public abstract class ShapePrinter implements IPrinter {
 		ColorConverter.getInstance();
 		color = ColorConverter.getColor(sColor);
 		color2 = ColorConverter.getColor(sColor2);
-	}
-	
-	protected void setPrimaryColor() {
-		graphics2d.setColor(color);
-	}
-	
-	protected void setSecondaryColor() {
-		graphics2d.setColor(color2);
 	}
 	
 	protected ShapeShadingType getShade() {
@@ -57,5 +50,16 @@ public abstract class ShapePrinter implements IPrinter {
 	protected int getHeight() {
 		return height;
 	}
+	
+	protected PaintCanvasBase getCanvas() {
+		return canvas;
+	}
 
+	protected Color getPrimaryColor() {
+		return color;
+	}
+	
+	protected Color getSecondaryColor() {
+		return color2;
+	}
 }

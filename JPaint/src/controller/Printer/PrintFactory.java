@@ -10,7 +10,7 @@ import model.ShapeType;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
-public class PrintFactory implements IPrinter{
+public class PrintFactory{
 	private PaintCanvasBase paintCanvas;
 	
 	public PrintFactory(PaintCanvasBase baseCanvas) {
@@ -28,19 +28,7 @@ public class PrintFactory implements IPrinter{
 	
 	private void screenOutput(List<IShape> shapeList) {
 		for (IShape shape : shapeList) {
-			ShapeType sType = shape.getType();
-			if (sType.equals(ShapeType.ELLIPSE)) {
-				IPrinter ellipsePrinter = new EllipsePrinter(shape, paintCanvas);
-				ellipsePrinter.print();
-			}
-			else if(sType.equals(ShapeType.RECTANGLE)) {
-				IPrinter rectanglePrinter = new RectanglePrinter(shape, paintCanvas);
-				rectanglePrinter.print();
-			}
-			else if(sType.equals(ShapeType.TRIANGLE)) {
-				IPrinter trianglePrinter = new TrianglePrinter(shape, paintCanvas);
-				trianglePrinter.print();
-			}
+			shape.print();
 		}
 	}
 }

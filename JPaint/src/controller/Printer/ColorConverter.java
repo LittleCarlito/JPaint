@@ -6,12 +6,15 @@ import java.lang.reflect.Field;
 import model.ShapeColor;
 
 public class ColorConverter {
-	private static final ColorConverter INSTANCE = new ColorConverter();
+	private static ColorConverter obj = null;
 	
 	private ColorConverter() {}
 	
 	public static ColorConverter getInstance() {
-		return INSTANCE;
+		if(obj == null) {
+			obj = new ColorConverter();
+		}
+		return obj;
 	}
 	
 	public static Color getColor(ShapeColor sColor) {

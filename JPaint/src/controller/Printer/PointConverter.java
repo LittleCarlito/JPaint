@@ -3,12 +3,15 @@ package controller.Printer;
 import model.Point;
 
 public class PointConverter {
-	private static final PointConverter INSTANCE = new PointConverter();
+	private static PointConverter obj = null;
 	
 	private PointConverter() {}
 	
 	public static PointConverter getInstance() {
-		return INSTANCE;
+		if(obj == null) {
+			obj = new PointConverter();
+		}
+		return obj;
 	}
 	
 	public static Point getOrigin(Point startPoint, Point endPoint) {

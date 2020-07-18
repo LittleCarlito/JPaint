@@ -1,9 +1,11 @@
 package model;
 
+import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
 
 public class Shape implements IShape{
 	private int sID;
+	private IPrinter sPrinter;
 	private ShapeType sType;
 	private ShapeColor sColor;
 	private ShapeColor sSecondColor;
@@ -12,8 +14,9 @@ public class Shape implements IShape{
 	private int sWidth;
 	private int sHeight;
 	
-	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
+	public Shape (int newID, IPrinter newPrinter, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
 		sID = newID;
+		sPrinter = newPrinter;
 		sType = newType;
 		sColor = newColor;
 		sSecondColor = newSecondColor;
@@ -60,7 +63,7 @@ public class Shape implements IShape{
 
 	@Override
 	public IShape getClone(Point newOrigin) {
-		return new Shape(sID, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
+		return new Shape(sID, sPrinter, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
 	}
 
 	@Override
@@ -80,5 +83,9 @@ public class Shape implements IShape{
 		}
 	}
 	
+	@Override
+	public void print() {
+		sPrinter.print(this);
+	}
 	
 }

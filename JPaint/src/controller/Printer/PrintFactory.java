@@ -11,18 +11,10 @@ import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
 public class PrintFactory{
-	private static PrintFactory obj = null;
 	
-	private PrintFactory() {
+	public PrintFactory() {
 	}
 	
-	public static PrintFactory getInstance() {
-		if(obj == null) {
-			obj = new PrintFactory();
-		}
-		return obj;		
-	}
-
 	public static void print(PaintCanvasBase paintCanvas) {
 		System.out.println("Within PrintFactory\nCount of shapeList: " + paintCanvas.getShapes().size() + "\nCount of selectList: " + paintCanvas.getSelect().size() + "\n");
 		Graphics2D graphics2d = paintCanvas.getGraphics2D();      

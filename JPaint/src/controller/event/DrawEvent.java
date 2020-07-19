@@ -16,7 +16,6 @@ public class DrawEvent implements IMouseEvent{
 
 	public void Execute() {
 		eventCanvas.add(eventShape);
-		PrintFactory.getInstance();
 		PrintFactory.print(eventCanvas);
 	}
 }

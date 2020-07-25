@@ -3,7 +3,6 @@ package controller.event;
 import controller.Printer.PointConverter;
 import controller.interfaces.IMouseEvent;
 import model.Point;
-import model.Shape;
 import model.ShapeFactory;
 import model.StartAndEndPointMode;
 import model.interfaces.IShape;
@@ -12,7 +11,7 @@ import view.interfaces.PaintCanvasBase;
 
 public class EventFactory{
 	
-	public EventFactory() {
+	private EventFactory() {
 	}
 	
 	public static IMouseEvent getEvent(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState){
@@ -21,7 +20,6 @@ public class EventFactory{
 		Point origin = PointConverter.getOrigin(startPoint, endPoint);
 		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
 		// Create shape
-		ShapeFactory.getInstance();
 		IShape newShape = ShapeFactory.getShape(baseState, baseCanvas, origin, dimensions);
 		// Determine event type
 		StartAndEndPointMode eventMode = baseState.getActiveStartAndEndPointMode();

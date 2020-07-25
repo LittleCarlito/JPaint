@@ -1,21 +1,26 @@
 package controller.event;
 
-import controller.Printer.PrintFactory;
+import java.util.ArrayList;
+import java.util.List;
+
+import controller.Printer.OutputFactory;
 import controller.interfaces.IMouseEvent;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
 public class DrawEvent implements IMouseEvent{
-	private PaintCanvasBase eventCanvas;
+	private PaintCanvasBase canvas;
 	private IShape eventShape;
 	
 	public DrawEvent(IShape nShape, PaintCanvasBase baseCanvas) {
-		eventCanvas = baseCanvas;
+		canvas = baseCanvas;
 		eventShape = nShape;
 	}
 
 	public void Execute() {
-		eventCanvas.add(eventShape);
-		PrintFactory.print(eventCanvas);
+		canvas.add(eventShape);
+		List<IShape> shapeList = new ArrayList<IShape>();
+		shapeList.add(eventShape);
+		OutputFactory.execute(shapeList, ((IShape shape) -> {shape.print();}));
 	}
 }

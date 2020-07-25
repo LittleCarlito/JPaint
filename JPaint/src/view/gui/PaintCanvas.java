@@ -2,10 +2,12 @@ package view.gui;
 
 import view.interfaces.PaintCanvasBase;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Printer.OutputFactory;
 //import javax.swing.JComponent;
 import model.interfaces.IShape;
 
@@ -40,19 +42,17 @@ public class PaintCanvas extends PaintCanvasBase {
 	}
 	
 	public void cleanShapeList(List<IShape> removeList) {
-		for(IShape shape : removeList) {
-			if(shapeList.contains(shape)) {
-				shapeList.remove(shape);
-			}
-		}
+		OutputFactory.execute(removeList, (IShape shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
 	public void deSelect() {
-		for(IShape shape : selectList) {
-			shapeList.add(shape);
-		}
-		for(int i = selectList.size() - 1; i >= 0; i--) {
-			selectList.remove(i);
-		}
+		OutputFactory.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
+		selectList.clear();
+	}
+	
+	public void clear() {
+		Graphics2D graphics2d = this.getGraphics2D();      
+		graphics2d.setColor(Color.WHITE);
+		graphics2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 }

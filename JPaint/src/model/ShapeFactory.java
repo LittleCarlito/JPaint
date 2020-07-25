@@ -9,17 +9,9 @@ import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 public class ShapeFactory {
-	private static ShapeFactory obj = null;
 	private static int sid = 0;
 
 	private ShapeFactory() {		
-	}
-	
-	public static ShapeFactory getInstance() {
-		if(obj == null) {
-			obj = new ShapeFactory();
-		}
-		return obj;
 	}
 	
 	public static IShape getShape(ApplicationState state, PaintCanvasBase canvas, Point origin, int[] dimensions) {

@@ -1,7 +1,6 @@
 package view.interfaces;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -24,4 +23,6 @@ public abstract class PaintCanvasBase extends JComponent {
 	public abstract void cleanShapeList(List<IShape> shape);
 	
 	public abstract void deSelect();
+	
+	public abstract void clear();
 }

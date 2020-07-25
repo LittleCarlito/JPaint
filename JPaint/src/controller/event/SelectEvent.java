@@ -1,10 +1,8 @@
 package controller.event;
 
-import java.awt.Rectangle;
-import java.util.List;
-
-import controller.Printer.PrintFactory;
+import controller.Printer.OutputFactory;
 import controller.interfaces.IMouseEvent;
+import controller.interfaces.IShapeCommand;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
@@ -19,19 +17,10 @@ public class SelectEvent implements IMouseEvent{
 	
 	@Override
 	public void Execute() {
-		//eventCanvas.deSelect();
 		eventCanvas.deSelect();
-		List<IShape> shapeList = eventCanvas.getShapes();
-		Rectangle r1 = new Rectangle(eventShape.getOrigin().getX(), eventShape.getOrigin().getY(), eventShape.getWidth(), eventShape.getHeight());
-		for(IShape shape : shapeList) {
-			Rectangle r2 = new Rectangle(shape.getOrigin().getX(), shape.getOrigin().getY(), shape.getWidth(), shape.getHeight());
-			if (r1.intersects(r2)) { 
-				System.out.println("Collision Detected!");
-				eventCanvas.select(shape);
-				}
-		}
+		IShapeCommand collisionCommand = new CollisionDetect(eventShape, eventCanvas);
+		OutputFactory.execute(eventCanvas.getShapes(), collisionCommand);
 		eventCanvas.cleanShapeList(eventCanvas.getSelect());
-		PrintFactory.print(eventCanvas);
 	}
 
 }

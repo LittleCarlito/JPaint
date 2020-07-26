@@ -16,5 +16,6 @@ public interface IShape {
 	public int getHeight();
 	public IShape getClone(Point newOrigin);
 	public boolean equals(Object obj);
+	public void outline();
 	public void print();
 }

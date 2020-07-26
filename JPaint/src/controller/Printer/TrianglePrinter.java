@@ -2,6 +2,7 @@ package controller.Printer;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 
 import controller.interfaces.IPrinter;
 import model.Point;
@@ -36,6 +37,11 @@ public class TrianglePrinter implements IPrinter{
 			graphics2d.setColor(ColorConverter.getColor(shape.getSecondColor()));
 			graphics2d.setStroke(new BasicStroke(5));
 			graphics2d.drawPolygon(dimensions2[0], dimensions2[1], 3);
+		}
+		else if(shadeType.equals(ShapeShadingType.SELECTED)) {
+	        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+	        graphics2d.setStroke(stroke);
+			graphics2d.fillPolygon(dimensions[0], dimensions[1], 3);
 		}
 	}
 }

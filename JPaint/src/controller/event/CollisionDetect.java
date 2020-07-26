@@ -11,7 +11,12 @@ public class CollisionDetect implements IShapeCommand {
 	private PaintCanvasBase canvas;
 	
 	public CollisionDetect(IShape newShape, PaintCanvasBase newCanvas) {
-		r1 = new Rectangle(newShape.getOrigin().getX(), newShape.getOrigin().getY(), newShape.getWidth(), newShape.getHeight());
+		if(newShape.getWidth() == 0 && newShape.getHeight() == 0) {
+			r1 = new Rectangle(newShape.getOrigin().getX(), newShape.getOrigin().getY(), 2, 2);
+		}
+		else {
+			r1 = new Rectangle(newShape.getOrigin().getX(), newShape.getOrigin().getY(), newShape.getWidth(), newShape.getHeight());
+		}
 		canvas = newCanvas;
 	}
 

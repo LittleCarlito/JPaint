@@ -83,6 +83,15 @@ public class Shape implements IShape{
 		}
 	}
 	
+	public void outline() {
+		Point outlineOrigin = new Point(sOrigin.getX() - 5, sOrigin.getY() - 5);
+		int outlineWidth = sWidth + 10;
+		int outlineHeight = sHeight + 10;
+		IShape outline = new Shape(sID, sPrinter, sType, ShapeColor.BLACK, sSecondColor, ShapeShadingType.SELECTED, outlineOrigin, outlineWidth, outlineHeight);
+		IPrinter outlinePrinter = ShapeHandler.getPrinter(sType, canvas)
+		sPrinter.print(outline);
+	}
+	
 	@Override
 	public void print() {
 		sPrinter.print(this);

@@ -1,6 +1,6 @@
 package controller.event;
 
-import controller.Printer.OutputFactory;
+import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
 import model.interfaces.IShape;
@@ -16,10 +16,10 @@ public class SelectEvent implements IMouseEvent{
 	}
 	
 	@Override
-	public void Execute() {
+	public void execute() {
 		eventCanvas.deSelect();
 		IShapeCommand collisionCommand = new CollisionDetect(eventShape, eventCanvas);
-		OutputFactory.execute(eventCanvas.getShapes(), collisionCommand);
+		ListOutput.execute(eventCanvas.getShapes(), collisionCommand);
 		eventCanvas.cleanShapeList(eventCanvas.getSelect());
 	}
 

@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Printer.OutputFactory;
+import controller.Printer.ListOutput;
 //import javax.swing.JComponent;
 import model.interfaces.IShape;
 
@@ -42,11 +42,11 @@ public class PaintCanvas extends PaintCanvasBase {
 	}
 	
 	public void cleanShapeList(List<IShape> removeList) {
-		OutputFactory.execute(removeList, (IShape shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
+		ListOutput.execute(removeList, (IShape shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
 	public void deSelect() {
-		OutputFactory.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
+		ListOutput.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
 		selectList.clear();
 	}
 	

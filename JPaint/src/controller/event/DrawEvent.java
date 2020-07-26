@@ -3,7 +3,7 @@ package controller.event;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Printer.OutputFactory;
+import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
@@ -17,10 +17,10 @@ public class DrawEvent implements IMouseEvent{
 		eventShape = nShape;
 	}
 
-	public void Execute() {
+	public void execute() {
 		canvas.add(eventShape);
 		List<IShape> shapeList = new ArrayList<IShape>();
 		shapeList.add(eventShape);
-		OutputFactory.execute(shapeList, ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeList, ((IShape shape) -> {shape.print();}));
 	}
 }

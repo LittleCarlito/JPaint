@@ -1,6 +1,6 @@
 package controller.event;
 
-import controller.Printer.OutputFactory;
+import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
 import model.Point;
@@ -18,12 +18,13 @@ public class MoveEvent implements IMouseEvent{
 		canvas = newEventCanvas;
 	}
 
-	public void Execute() {
+	public void execute() {
 		canvas.clear();
 		IShapeCommand mCommand = new MoveCommand(canvas, startPoint, endPoint);
-		OutputFactory.execute(canvas.getSelect(), mCommand);
-		OutputFactory.execute(canvas.getShapes(), ((IShape shape) -> {shape.print();}));
-		OutputFactory.execute(canvas.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(canvas.getSelect(), mCommand);
+		ListOutput.execute(canvas.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

@@ -11,16 +11,16 @@ public class ShapeHandler {
 	public ShapeHandler() {
 	}
 	
-	public static IShape getShape(ApplicationState state, PaintCanvasBase canvas, Point origin, int[] dimensions) {
+	public static IShape getShape(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
 		IShape newShape = null;
-		if(state.getActiveShapeType().equals(ShapeType.RECTANGLE)) {
-			newShape = ShapeFactory.getRectangle(state, canvas, origin, dimensions);
+		if(newType.equals(ShapeType.RECTANGLE)) {
+			newShape = ShapeFactory.getRectangle(newType, newColor, newSecondColor, newShade, origin, dimensions);
 		}
-		else if(state.getActiveShapeType().equals(ShapeType.ELLIPSE)) {
-			newShape = ShapeFactory.getEllipse(state, canvas, origin, dimensions);
+		else if(newType.equals(ShapeType.ELLIPSE)) {
+			newShape = ShapeFactory.getEllipse(newType, newColor, newSecondColor, newShade, origin, dimensions);
 		}
-		else if(state.getActiveShapeType().equals(ShapeType.TRIANGLE)) {
-			newShape = ShapeFactory.getTriangle(state, canvas, origin, dimensions);
+		else if(newType.equals(ShapeType.TRIANGLE)) {
+			newShape = ShapeFactory.getTriangle(newType, newColor, newSecondColor, newShade, origin, dimensions);
 		}
 		return newShape;
 	}

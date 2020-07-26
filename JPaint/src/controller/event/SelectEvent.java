@@ -21,6 +21,10 @@ public class SelectEvent implements IMouseEvent{
 		IShapeCommand collisionCommand = new CollisionDetect(eventShape, eventCanvas);
 		ListOutput.execute(eventCanvas.getShapes(), collisionCommand);
 		eventCanvas.cleanShapeList(eventCanvas.getSelect());
+		eventCanvas.clear();
+		ListOutput.execute(eventCanvas.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(eventCanvas.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(eventCanvas.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

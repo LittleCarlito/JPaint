@@ -6,6 +6,7 @@ import model.interfaces.IShape;
 public class Shape implements IShape{
 	private int sID;
 	private IPrinter sPrinter;
+	private IShape sOutline;
 	private ShapeType sType;
 	private ShapeColor sColor;
 	private ShapeColor sSecondColor;
@@ -14,9 +15,8 @@ public class Shape implements IShape{
 	private int sWidth;
 	private int sHeight;
 	
-	public Shape (int newID, IPrinter newPrinter, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
+	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
 		sID = newID;
-		sPrinter = newPrinter;
 		sType = newType;
 		sColor = newColor;
 		sSecondColor = newSecondColor;
@@ -24,6 +24,23 @@ public class Shape implements IShape{
 		sOrigin = newOrigin;
 		sWidth = newWidth;
 		sHeight = newHeight;
+	}
+	
+	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight, IShape newOutline) {
+		sID = newID;
+		sType = newType;
+		sColor = newColor;
+		sSecondColor = newSecondColor;
+		sShade = newShade;
+		sOrigin = newOrigin;
+		sWidth = newWidth;
+		sHeight = newHeight;
+		sOutline = newOutline;
+	}
+
+	@Override
+	public void setPrinter(IPrinter newPrinter) {
+		sPrinter  = newPrinter;
 	}
 	
 	@Override
@@ -63,7 +80,9 @@ public class Shape implements IShape{
 
 	@Override
 	public IShape getClone(Point newOrigin) {
-		return new Shape(sID, sPrinter, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
+		IShape newShape = new Shape(sID, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight, sOutline);
+		newShape.setPrinter(sPrinter);
+		return newShape;
 	}
 
 	@Override
@@ -83,12 +102,12 @@ public class Shape implements IShape{
 		}
 	}
 	
+	@Override
 	public void outline() {
 		Point outlineOrigin = new Point(sOrigin.getX() - 5, sOrigin.getY() - 5);
 		int outlineWidth = sWidth + 10;
 		int outlineHeight = sHeight + 10;
-		IShape outline = new Shape(sID, sPrinter, sType, ShapeColor.BLACK, sSecondColor, ShapeShadingType.SELECTED, outlineOrigin, outlineWidth, outlineHeight);
-		IPrinter outlinePrinter = ShapeHandler.getPrinter(sType, canvas)
+		IShape outline = ShapeHandler.getShape(sType, ShapeColor.BLACK, ShapeColor.WHITE, ShapeShadingType.SELECTED, outlineOrigin, new int[] {outlineWidth, outlineHeight});
 		sPrinter.print(outline);
 	}
 	

@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import controller.interfaces.IPrinter;
 import model.Point;
 import model.ShapeColor;
 import model.ShapeShadingType;
@@ -18,4 +19,5 @@ public interface IShape {
 	public boolean equals(Object obj);
 	public void outline();
 	public void print();
+	public void setPrinter(IPrinter newPrinter);
 }

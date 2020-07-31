@@ -1,4 +1,4 @@
-package controller.event;
+package controller.Printer;
 
 import java.awt.Rectangle;
 

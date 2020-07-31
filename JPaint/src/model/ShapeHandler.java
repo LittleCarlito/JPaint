@@ -38,4 +38,8 @@ public class ShapeHandler {
 		}
 		return newPrinter;
 	}
+	
+	public static IShape getCopy(IShape shape) {
+		return ShapeHandler.getShape(shape.getType(), shape.getColor(), shape.getSecondColor(), shape.getShade(), shape.getOrigin(), new int[] {shape.getWidth(), shape.getHeight()});
+	}
 }

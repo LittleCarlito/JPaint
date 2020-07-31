@@ -41,7 +41,7 @@ public class TrianglePrinter implements IPrinter{
 		else if(shadeType.equals(ShapeShadingType.SELECTED)) {
 	        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
 	        graphics2d.setStroke(stroke);
-			graphics2d.fillPolygon(dimensions[0], dimensions[1], 3);
+	        graphics2d.drawPolygon(dimensions[0], dimensions[1], 3);
 		}
 	}
 }

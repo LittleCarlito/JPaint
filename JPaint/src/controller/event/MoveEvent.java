@@ -20,7 +20,7 @@ public class MoveEvent implements IMouseEvent{
 
 	public void execute() {
 		canvas.clear();
-		IShapeCommand mCommand = new MoveCommand(canvas, startPoint, endPoint);
+		IShapeCommand mCommand = new MoveCommand(canvas.getSelect(), startPoint, endPoint);
 		ListOutput.execute(canvas.getSelect(), mCommand);
 		ListOutput.execute(canvas.getShapes(), ((IShape shape) -> {shape.print();}));
 		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.print();}));

@@ -15,10 +15,12 @@ public class PaintCanvas extends PaintCanvasBase {
 	private static final long serialVersionUID = 1509453058678547085L;
 	private List<IShape> shapeList;
 	private List<IShape> selectList;
+	private List<IShape> clipList;
 	
 	public PaintCanvas(ArrayList<IShape> baseList, List<IShape> baseSelectList) {
 		shapeList = baseList;
 		selectList = baseSelectList;
+		clipList = new ArrayList<IShape>();
 	}
 	
 	public void add(IShape newShape) {
@@ -33,13 +35,17 @@ public class PaintCanvas extends PaintCanvasBase {
 		return shapeList;
 	}
 	
-    public Graphics2D getGraphics2D() {
-        return (Graphics2D)getGraphics();
-    }
-
 	public List<IShape> getSelect() {
 		return selectList;
 	}
+	
+	public List<IShape> getClip(){
+		return clipList;
+	}
+	
+    public Graphics2D getGraphics2D() {
+        return (Graphics2D)getGraphics();
+    }
 	
 	public void cleanShapeList(List<IShape> removeList) {
 		ListOutput.execute(removeList, (IShape shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
@@ -48,6 +54,10 @@ public class PaintCanvas extends PaintCanvasBase {
 	public void deSelect() {
 		ListOutput.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
 		selectList.clear();
+	}
+	
+	public void clearClip() {
+		clipList.clear();
 	}
 	
 	public void clear() {

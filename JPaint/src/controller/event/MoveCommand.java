@@ -12,8 +12,8 @@ public class MoveCommand implements IShapeCommand {
 	private Point _startPoint;
 	private Point _endPoint;
 	
-	public MoveCommand(PaintCanvasBase canvas, Point startPoint, Point endPoint) {
-		_shapeList = canvas.getSelect();
+	public MoveCommand(List<IShape> shapeList, Point startPoint, Point endPoint) {
+		_shapeList = shapeList;
 		_startPoint = startPoint;
 		_endPoint = endPoint;
 	}

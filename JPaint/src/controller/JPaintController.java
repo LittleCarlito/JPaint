@@ -1,6 +1,7 @@
 package controller;
 
 import controller.event.CopyCommand;
+import controller.event.PasteCommand;
 import controller.interfaces.IJPaintController;
 import model.interfaces.IApplicationState;
 import view.EventName;

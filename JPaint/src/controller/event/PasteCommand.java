@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
+import model.Point;
 import model.ShapeHandler;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
@@ -12,9 +13,11 @@ import view.interfaces.PaintCanvasBase;
 public class PasteCommand implements IMouseEvent {
 	
 	private PaintCanvasBase paintCanvas;
+	private Point pastePoint;
 	
 	public PasteCommand(PaintCanvasBase paintCanvas) {
 		this.paintCanvas = paintCanvas;
+		pastePoint = new Point (0, 0);
 	}
 
 	@Override
@@ -22,16 +25,20 @@ public class PasteCommand implements IMouseEvent {
 		List<IShape> clipList = paintCanvas.getClip();
 		List<IShape> pasteList = new ArrayList<IShape>();
 		IShape tempShape;
-		for(IShape shape : clipList) {
-			tempShape = ShapeHandler.getCopy(shape);
+		int clipLen = clipList.size();
+		for (int i = 0; i < clipLen; i++) {
+			tempShape = clipList.get(i);
+			tempShape = tempShape.getClone(pastePoint);
+			tempShape = ShapeHandler.getCopy(tempShape);
+			tempShape.setPrinter(ShapeHandler.getPrinter(tempShape.getType(), paintCanvas));
+			paintCanvas.add(tempShape);
 			pasteList.add(tempShape);
+			pastePoint = new Point((pastePoint.getX() + tempShape.getWidth()) + 20, pastePoint.getY());
 		}
-
-		//get clones of all clip board shapes
-		//use move event to iterate through the list and move the origin so they don't all paste on each other
-//		ListOutput.execute(canvas.getShapes(), ((IShape shape) -> {shape.print();}));
-//		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.print();}));
-//		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.outline();}));
+		paintCanvas.clear();
+		ListOutput.execute(paintCanvas.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(paintCanvas.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(paintCanvas.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

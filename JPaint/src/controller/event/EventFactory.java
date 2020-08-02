@@ -1,11 +1,10 @@
 package controller.event;
 
-import controller.Printer.PointConverter;
 import controller.interfaces.IMouseEvent;
+import controller.interfaces.IPrinter;
+import controller.singletons.PointConverter;
 import model.Point;
 import model.ShapeHandler;
-import model.ShapeShadingType;
-import model.StartAndEndPointMode;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
@@ -37,7 +36,10 @@ public class EventFactory{
 		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
 		// Create shape
 		IShape newShape = ShapeHandler.getShape(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions);
-		newShape.setPrinter(ShapeHandler.getPrinter(baseState.getActiveShapeType(), baseCanvas));
+		IPrinter printer = ShapeHandler.getPrinter(baseState.getActiveShapeType(), baseCanvas);
+		IShape outline = ShapeHandler.getOutliner(newShape, printer);
+		newShape.setPrinter(printer);
+		newShape.setOutline(outline);
 		eventShape = newShape;
 	}
 }

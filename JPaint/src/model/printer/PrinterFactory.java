@@ -1,4 +1,4 @@
-package controller.Printer;
+package model.printer;
 
 import controller.interfaces.IPrinter;
 import view.interfaces.PaintCanvasBase;

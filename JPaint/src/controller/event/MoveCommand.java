@@ -5,7 +5,6 @@ import java.util.List;
 import controller.interfaces.IShapeCommand;
 import model.Point;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class MoveCommand implements IShapeCommand {
 	private List<IShape> _shapeList;

@@ -1,8 +1,8 @@
 package model;
 
-import controller.Printer.PrinterFactory;
 import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
+import model.printer.PrinterFactory;
 import view.interfaces.PaintCanvasBase;
 
 public class ShapeHandler {
@@ -38,7 +38,13 @@ public class ShapeHandler {
 		return newPrinter;
 	}
 	
-	public static IPrinter getOutliner(ShapeType sType, PaintCanvasBase canvas) {
+	public static IShape getOutliner(IShape shape, IPrinter printer) {
+		PaintCanvasBase canvas = printer.getCanvas();
+		ShapeType sType = shape.getType();
+		Point outlineOrigin = new Point(shape.getOrigin().getX() - 5, shape.getOrigin().getY() - 5);
+		int outlineWidth = shape.getWidth() + 10;
+		int outlineHeight = shape.getHeight() + 10;
+		IShape sOutline = getShape(sType, ShapeColor.BLACK, shape.getSecondColor(), shape.getShade(), outlineOrigin, new int[] {outlineWidth, outlineHeight});
 		IPrinter newPrinter = null;
 		if(sType.equals(ShapeType.RECTANGLE)) {
 			newPrinter = PrinterFactory.getRectangleOutlinePrinter(canvas);
@@ -49,7 +55,8 @@ public class ShapeHandler {
 		else if(sType.equals(ShapeType.TRIANGLE)) {
 			newPrinter = PrinterFactory.getTriangleOutlinePrinter(canvas);
 		}
-		return newPrinter;		
+		sOutline.setPrinter(newPrinter);
+		return sOutline;		
 	}
 	
 	public static IShape getCopy(IShape shape) {

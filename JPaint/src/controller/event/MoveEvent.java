@@ -1,8 +1,8 @@
 package controller.event;
 
-import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
+import controller.singletons.ListOutput;
 import model.Point;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;

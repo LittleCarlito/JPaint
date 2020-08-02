@@ -1,4 +1,4 @@
-package controller.Printer;
+package controller.singletons;
 
 import model.Point;
 

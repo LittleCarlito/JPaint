@@ -20,4 +20,5 @@ public interface IShape {
 	public void outline();
 	public void print();
 	public void setPrinter(IPrinter newPrinter);
+	public void setOutline(IShape outline);
 }

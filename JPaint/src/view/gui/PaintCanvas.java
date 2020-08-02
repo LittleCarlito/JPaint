@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Printer.ListOutput;
+import controller.singletons.ListOutput;
 //import javax.swing.JComponent;
 import model.interfaces.IShape;
 

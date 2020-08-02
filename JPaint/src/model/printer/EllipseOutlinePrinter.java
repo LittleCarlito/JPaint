@@ -1,4 +1,4 @@
-package controller.Printer;
+package model.printer;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -23,6 +23,11 @@ public class EllipseOutlinePrinter implements IPrinter {
         Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
         graphics2d.setStroke(stroke);
         graphics2d.drawOval(shape.getOrigin().getX(), shape.getOrigin().getY(), shape.getWidth(), shape.getHeight());
+	}
+
+	@Override
+	public PaintCanvasBase getCanvas() {
+		return canvas;
 	}
 
 }

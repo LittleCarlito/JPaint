@@ -3,8 +3,8 @@ package controller.event;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
+import controller.singletons.ListOutput;
 import model.Point;
 import model.ShapeHandler;
 import model.interfaces.IShape;

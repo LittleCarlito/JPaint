@@ -1,9 +1,9 @@
 package controller.event;
 
-import controller.Printer.CollisionDetect;
-import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
+import controller.singletons.CollisionDetect;
+import controller.singletons.ListOutput;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 

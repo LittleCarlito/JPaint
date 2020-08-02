@@ -1,7 +1,7 @@
 package controller.event;
 
-import controller.Printer.ListOutput;
 import controller.interfaces.IMouseEvent;
+import controller.singletons.ListOutput;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 

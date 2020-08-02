@@ -28,9 +28,7 @@ public class PasteCommand implements IMouseEvent {
 		int clipLen = clipList.size();
 		for (int i = 0; i < clipLen; i++) {
 			tempShape = clipList.get(i);
-			tempShape = tempShape.getClone(pastePoint);
-			tempShape = ShapeHandler.getCopy(tempShape);
-			tempShape.setPrinter(ShapeHandler.getPrinter(tempShape.getType(), paintCanvas));
+			tempShape = ShapeHandler.getShape(tempShape.getType(), tempShape.getColor(), tempShape.getSecondColor(), tempShape.getShade(), pastePoint, new int[] {tempShape.getWidth(), tempShape.getHeight()}, paintCanvas);
 			paintCanvas.add(tempShape);
 			pasteList.add(tempShape);
 			pastePoint = new Point((pastePoint.getX() + tempShape.getWidth()) + 20, pastePoint.getY());

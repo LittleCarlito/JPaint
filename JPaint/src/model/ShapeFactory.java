@@ -8,21 +8,13 @@ public class ShapeFactory {
 	private ShapeFactory() {		
 	}
 	
-	public static IShape getRectangle(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
-		return getShape(newType, newColor, newSecondColor, newShade, origin, dimensions);
-	}
-	
-	public static IShape getEllipse(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
-		return getShape(newType, newColor, newSecondColor, newShade, origin, dimensions);
-	}
-	
-	public static IShape getTriangle(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
-		return getShape(newType, newColor, newSecondColor, newShade, origin, dimensions);
-	}
-	
-	private static IShape getShape(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
-		IShape newShape = new Shape(sid, newType, newColor, newSecondColor, newShade, origin, dimensions[0], dimensions[1]);
+	public static IShape getShapeWithId(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
+		IShape newShape = getShape(newType, newColor, newSecondColor, newShade, origin, dimensions);
 		sid++;
 		return newShape;
+	}
+	
+	public static IShape getShape(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions) {
+		return new Shape(sid, newType, newColor, newSecondColor, newShade, origin, dimensions[0], dimensions[1]);
 	}
 }

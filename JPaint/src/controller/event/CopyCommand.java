@@ -21,9 +21,6 @@ public class CopyCommand implements IMouseEvent {
 		List<IShape> selectList = paintCanvas.getSelect();
 		List<IShape> clipList = paintCanvas.getClip();
 		ListOutput.execute(selectList, (IShape shape) -> {clipList.add(shape);});
-		
-		System.out.println("\nClipboard has: ");
-		ListOutput.execute(clipList, (IShape shape) -> {System.out.println(shape.toString());});
 	}
 
 }

@@ -3,7 +3,6 @@ package model;
 import controller.Printer.PrinterFactory;
 import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
-import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 public class ShapeHandler {
@@ -37,6 +36,20 @@ public class ShapeHandler {
 			newPrinter = PrinterFactory.getTrianglePrinter(canvas);
 		}
 		return newPrinter;
+	}
+	
+	public static IPrinter getOutliner(ShapeType sType, PaintCanvasBase canvas) {
+		IPrinter newPrinter = null;
+		if(sType.equals(ShapeType.RECTANGLE)) {
+			newPrinter = PrinterFactory.getRectangleOutlinePrinter(canvas);
+		}
+		else if(sType.equals(ShapeType.ELLIPSE)) {
+			newPrinter = PrinterFactory.getEllipseOutlinePrinter(canvas);
+		}
+		else if(sType.equals(ShapeType.TRIANGLE)) {
+			newPrinter = PrinterFactory.getTriangleOutlinePrinter(canvas);
+		}
+		return newPrinter;		
 	}
 	
 	public static IShape getCopy(IShape shape) {

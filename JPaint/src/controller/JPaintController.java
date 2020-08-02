@@ -1,6 +1,7 @@
 package controller;
 
 import controller.event.CopyCommand;
+import controller.event.DeleteCommand;
 import controller.event.PasteCommand;
 import controller.interfaces.IJPaintController;
 import model.interfaces.IApplicationState;
@@ -32,5 +33,6 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.COPY, () -> new CopyCommand(paintCanvas).execute());
         uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(paintCanvas).execute());
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(paintCanvas).execute());
     }
 }

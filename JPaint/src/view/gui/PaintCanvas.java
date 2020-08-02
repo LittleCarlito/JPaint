@@ -16,11 +16,13 @@ public class PaintCanvas extends PaintCanvasBase {
 	private List<IShape> shapeList;
 	private List<IShape> selectList;
 	private List<IShape> clipList;
+	private List<IShape> deleteList;
 	
 	public PaintCanvas(ArrayList<IShape> baseList, List<IShape> baseSelectList) {
 		shapeList = baseList;
 		selectList = baseSelectList;
 		clipList = new ArrayList<IShape>();
+		deleteList = new ArrayList<IShape>();
 	}
 	
 	public void add(IShape newShape) {
@@ -64,5 +66,11 @@ public class PaintCanvas extends PaintCanvasBase {
 		Graphics2D graphics2d = this.getGraphics2D();      
 		graphics2d.setColor(Color.WHITE);
 		graphics2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+	}
+
+	@Override
+	public void deleteCommand() {
+		ListOutput.execute(selectList, (IShape shape) -> {deleteList.add(shape);});
+		selectList.clear();
 	}
 }

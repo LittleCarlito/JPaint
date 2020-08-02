@@ -29,4 +29,6 @@ public abstract class PaintCanvasBase extends JComponent {
 	public abstract void clearClip();
 	
 	public abstract void clear();
+	
+	public abstract void deleteCommand();
 }

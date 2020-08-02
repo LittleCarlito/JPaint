@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import controller.event.EventHandler;
 import controller.interfaces.IMouseEvent;
 import model.Point;
-import model.StartAndEndPointMode;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 

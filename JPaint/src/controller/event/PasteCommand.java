@@ -1,6 +1,5 @@
 package controller.event;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.interfaces.IMouseEvent;
@@ -23,14 +22,12 @@ public class PasteCommand implements IMouseEvent {
 	@Override
 	public void execute() {
 		List<IShape> clipList = paintCanvas.getClip();
-		List<IShape> pasteList = new ArrayList<IShape>();
 		IShape tempShape;
 		int clipLen = clipList.size();
 		for (int i = 0; i < clipLen; i++) {
 			tempShape = clipList.get(i);
 			tempShape = ShapeHandler.getShape(tempShape.getType(), tempShape.getColor(), tempShape.getSecondColor(), tempShape.getShade(), pastePoint, new int[] {tempShape.getWidth(), tempShape.getHeight()}, paintCanvas);
 			paintCanvas.add(tempShape);
-			pasteList.add(tempShape);
 			pastePoint = new Point((pastePoint.getX() + tempShape.getWidth()) + 20, pastePoint.getY());
 		}
 		paintCanvas.clear();

@@ -45,6 +45,10 @@ public class PaintCanvas extends PaintCanvasBase {
 		return clipList;
 	}
 	
+	public List<IShape> getDelete(){
+		return deleteList;
+	}
+	
     public Graphics2D getGraphics2D() {
         return (Graphics2D)getGraphics();
     }

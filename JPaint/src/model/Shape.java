@@ -74,7 +74,7 @@ public class Shape implements IShape{
 	@Override
 	public IShape getCloneAt(Point newOrigin) {
 		IShape newShape = new Shape(sID, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
-		return ShapeHandler.completeShape(newShape, sPrinter);
+		return ShapeHandler.outlineShape(newShape, sPrinter);
 	}
 
 	@Override

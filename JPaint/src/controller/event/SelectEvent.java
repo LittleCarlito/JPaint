@@ -2,30 +2,31 @@ package controller.event;
 
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
+import controller.singletons.CanvasClear;
 import controller.singletons.CollisionDetect;
 import controller.singletons.ListOutput;
+import model.IShapeManager;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class SelectEvent implements IMouseEvent{
-	private PaintCanvasBase eventCanvas;
+	private IShapeManager shapeManager;
 	private IShape eventShape;
 	
-	public SelectEvent (IShape nShape, PaintCanvasBase baseCanvas) {
-		eventCanvas = baseCanvas;
-		eventShape = nShape;
+	public SelectEvent (IShape eventShape, IShapeManager shapeManager) {
+		this.shapeManager = shapeManager;
+		this.eventShape = eventShape;
 	}
 	
 	@Override
 	public void execute() {
-		eventCanvas.deSelect();
-		IShapeCommand collisionCommand = new CollisionDetect(eventShape, eventCanvas);
-		ListOutput.execute(eventCanvas.getShapes(), collisionCommand);
-		eventCanvas.cleanShapeList(eventCanvas.getSelect());
-		eventCanvas.clear();
-		ListOutput.execute(eventCanvas.getShapes(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(eventCanvas.getSelect(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(eventCanvas.getSelect(), ((IShape shape) -> {shape.outline();}));
+		shapeManager.deSelect();
+		IShapeCommand collisionCommand = new CollisionDetect(eventShape, shapeManager);
+		ListOutput.execute(shapeManager.getShapes(), collisionCommand);
+		shapeManager.cleanShapeList(shapeManager.getSelect());
+		CanvasClear.clear();
+		ListOutput.execute(shapeManager.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

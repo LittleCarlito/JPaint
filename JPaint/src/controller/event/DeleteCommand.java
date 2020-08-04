@@ -1,25 +1,26 @@
 package controller.event;
 
 import controller.interfaces.IMouseEvent;
+import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
+import model.IShapeManager;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class DeleteCommand implements IMouseEvent {
 	
-	private PaintCanvasBase paintCanvas;
+	private IShapeManager shapeManager;
 	
-	public DeleteCommand(PaintCanvasBase paintCanvas) {
-		this.paintCanvas = paintCanvas;
+	public DeleteCommand(IShapeManager shapeManager) {
+		this.shapeManager = shapeManager;
 	}
 
 	@Override
 	public void execute() {
-		paintCanvas.deleteCommand();
-		paintCanvas.clear();
-		ListOutput.execute(paintCanvas.getShapes(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(paintCanvas.getSelect(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(paintCanvas.getSelect(), ((IShape shape) -> {shape.outline();}));
+		shapeManager.deleteCommand();
+		CanvasClear.clear();
+		ListOutput.execute(shapeManager.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

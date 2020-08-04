@@ -2,29 +2,30 @@ package controller.event;
 
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
+import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
+import model.IShapeManager;
 import model.Point;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class MoveEvent implements IMouseEvent{
 	private Point startPoint;
 	private Point endPoint;
-	private PaintCanvasBase canvas;
+	private IShapeManager shapeManager;
 	
-	public MoveEvent(Point newStartPoint, Point newEndPoint, PaintCanvasBase newEventCanvas) {
-		startPoint = newStartPoint;
-		endPoint = newEndPoint;
-		canvas = newEventCanvas;
+	public MoveEvent(Point startPoint, Point endPoint, IShapeManager shapeManager) {
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+		this.shapeManager = shapeManager;
 	}
 
 	public void execute() {
-		canvas.clear();
-		IShapeCommand mCommand = new MoveCommand(canvas.getSelect(), startPoint, endPoint);
-		ListOutput.execute(canvas.getSelect(), mCommand);
-		ListOutput.execute(canvas.getShapes(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(canvas.getSelect(), ((IShape shape) -> {shape.outline();}));
+		IShapeCommand mCommand = new MoveCommand(shapeManager.getSelect(), startPoint, endPoint);
+		ListOutput.execute(shapeManager.getSelect(), mCommand);
+		CanvasClear.clear();
+		ListOutput.execute(shapeManager.getShapes(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.outline();}));
 	}
 
 }

@@ -32,6 +32,11 @@ public class Shape implements IShape{
 	}
 	
 	@Override
+	public IPrinter getPrinter() {
+		return sPrinter;
+	}
+	
+	@Override
 	public void setOutline(IShape outline) {
 		this.sOutline = outline;
 	}

@@ -5,20 +5,20 @@ import java.util.List;
 
 import controller.interfaces.IMouseEvent;
 import controller.singletons.ListOutput;
+import model.IShapeManager;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class DrawEvent implements IMouseEvent{
-	private PaintCanvasBase canvas;
+	private IShapeManager shapeManager;
 	private IShape eventShape;
 	
-	public DrawEvent(IShape nShape, PaintCanvasBase baseCanvas) {
-		canvas = baseCanvas;
+	public DrawEvent(IShape nShape, IShapeManager shapeManager) {
+		this.shapeManager = shapeManager;
 		eventShape = nShape;
 	}
 
 	public void execute() {
-		canvas.add(eventShape);
+		shapeManager.add(eventShape);
 		List<IShape> shapeList = new ArrayList<IShape>();
 		shapeList.add(eventShape);
 		ListOutput.execute(shapeList, ((IShape shape) -> {shape.print();}));

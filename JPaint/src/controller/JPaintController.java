@@ -4,18 +4,18 @@ import controller.event.CopyCommand;
 import controller.event.DeleteCommand;
 import controller.event.PasteCommand;
 import controller.interfaces.IJPaintController;
+import model.IShapeManager;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
-import view.interfaces.PaintCanvasBase;
 
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
-    private final PaintCanvasBase paintCanvas;
+    private final IShapeManager shapeManager;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, PaintCanvasBase paintCanvas) {
-    	this.paintCanvas = paintCanvas;
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState, IShapeManager shapeManager) {
+    	this.shapeManager = shapeManager;
         this.uiModule = uiModule;
         this.applicationState = applicationState;
     }
@@ -31,8 +31,8 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> applicationState.setActiveSecondaryColor());
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> applicationState.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
-        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(paintCanvas).execute());
-        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(paintCanvas).execute());
-        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(paintCanvas).execute());
+        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(shapeManager).execute());
+        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(shapeManager).execute());
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(shapeManager).execute());
     }
 }

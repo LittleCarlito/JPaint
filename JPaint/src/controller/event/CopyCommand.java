@@ -4,22 +4,22 @@ import java.util.List;
 
 import controller.interfaces.IMouseEvent;
 import controller.singletons.ListOutput;
+import model.IShapeManager;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class CopyCommand implements IMouseEvent {
 	
-	private PaintCanvasBase paintCanvas;
+	private IShapeManager shapeManager;
 	
-	public CopyCommand(PaintCanvasBase paintCanvas) {
-		this.paintCanvas = paintCanvas;
+	public CopyCommand(IShapeManager shapeManager) {
+		this.shapeManager = shapeManager;
 	}
 
 	@Override
 	public void execute() {
-		paintCanvas.clearClip();
-		List<IShape> selectList = paintCanvas.getSelect();
-		List<IShape> clipList = paintCanvas.getClip();
+		shapeManager.clearClip();
+		List<IShape> selectList = shapeManager.getSelect();
+		List<IShape> clipList = shapeManager.getClip();
 		ListOutput.execute(selectList, (IShape shape) -> {clipList.add(shape);});
 	}
 

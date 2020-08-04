@@ -3,28 +3,28 @@ package controller.singletons;
 import java.awt.Rectangle;
 
 import controller.interfaces.IShapeCommand;
+import model.IShapeManager;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 
 public class CollisionDetect implements IShapeCommand {
 	private Rectangle r1;
-	private PaintCanvasBase canvas;
+	private IShapeManager shapeManager;
 	
-	public CollisionDetect(IShape newShape, PaintCanvasBase newCanvas) {
+	public CollisionDetect(IShape newShape, IShapeManager shapeManager) {
 		if(newShape.getWidth() == 0 && newShape.getHeight() == 0) {
 			r1 = new Rectangle(newShape.getOrigin().getX(), newShape.getOrigin().getY(), 2, 2);
 		}
 		else {
 			r1 = new Rectangle(newShape.getOrigin().getX(), newShape.getOrigin().getY(), newShape.getWidth(), newShape.getHeight());
 		}
-		canvas = newCanvas;
+		this.shapeManager = shapeManager;
 	}
 
 	@Override
 	public void execute(IShape shape) {
 		Rectangle r2 = new Rectangle(shape.getOrigin().getX(), shape.getOrigin().getY(), shape.getWidth(), shape.getHeight());
 		if (r1.intersects(r2)) { 
-			canvas.select(shape);
+			shapeManager.select(shape);
 			}
 	}
 

@@ -2,7 +2,6 @@ package controller.event;
 
 import controller.interfaces.IMouseEvent;
 import controller.interfaces.IShapeCommand;
-import controller.singletons.CanvasClear;
 import controller.singletons.CollisionDetect;
 import controller.singletons.ListOutput;
 import model.IShapeManager;
@@ -23,10 +22,7 @@ public class SelectEvent implements IMouseEvent{
 		IShapeCommand collisionCommand = new CollisionDetect(eventShape, shapeManager);
 		ListOutput.execute(shapeManager.getShapes(), collisionCommand);
 		shapeManager.cleanShapeList(shapeManager.getSelect());
-		CanvasClear.clear();
-		ListOutput.execute(shapeManager.getShapes(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.outline();}));
+		shapeManager.print();
 	}
 
 }

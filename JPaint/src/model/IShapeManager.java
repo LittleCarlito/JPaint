@@ -4,20 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
 import model.interfaces.IShape;
+import view.interfaces.PaintCanvasBase;
 
 public class IShapeManager {
 	private List<IShape> shapeList;
 	private List<IShape> selectList;
 	private List<IShape> clipList;
 	private Stack<IShape> deleteList;
+	private PaintCanvasBase canvas;
 	
-	public IShapeManager() {
+	public IShapeManager(PaintCanvasBase canvas) {
+		this.canvas = canvas;
 		shapeList = new ArrayList<IShape>();
 		selectList = new ArrayList<IShape>();
 		clipList = new ArrayList<IShape>();
 		deleteList = new Stack<IShape>();
+	}
+	
+	public PaintCanvasBase getCanvas() {
+		return canvas;
 	}
 	
 	public void add(IShape newShape) {
@@ -56,5 +64,12 @@ public class IShapeManager {
 	public void deleteCommand() {
 		ListOutput.execute(selectList, (IShape shape) -> {deleteList.push(shape);});
 		selectList.clear();
+	}
+	
+	public void print() {
+		CanvasClear.clear();
+		ListOutput.execute(shapeList, ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(selectList, ((IShape shape) -> {shape.print();}));
+		ListOutput.execute(selectList, ((IShape shape) -> {shape.outline();}));
 	}
 }

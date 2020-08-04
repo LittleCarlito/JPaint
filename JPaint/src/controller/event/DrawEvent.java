@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.interfaces.IMouseEvent;
-import controller.singletons.ListOutput;
 import model.IShapeManager;
 import model.interfaces.IShape;
 
@@ -21,6 +20,6 @@ public class DrawEvent implements IMouseEvent{
 		shapeManager.add(eventShape);
 		List<IShape> shapeList = new ArrayList<IShape>();
 		shapeList.add(eventShape);
-		ListOutput.execute(shapeList, ((IShape shape) -> {shape.print();}));
+		shapeManager.print();
 	}
 }

@@ -3,8 +3,6 @@ package controller.event;
 import java.util.List;
 
 import controller.interfaces.IMouseEvent;
-import controller.singletons.CanvasClear;
-import controller.singletons.ListOutput;
 import model.IShapeManager;
 import model.Point;
 import model.ShapeHandler;
@@ -27,14 +25,11 @@ public class PasteCommand implements IMouseEvent {
 		int clipLen = clipList.size();
 		for (int i = 0; i < clipLen; i++) {
 			tempShape = clipList.get(i);
-			tempShape = ShapeHandler.getShape(tempShape.getType(), tempShape.getColor(), tempShape.getSecondColor(), tempShape.getShade(), pastePoint, new int[] {tempShape.getWidth(), tempShape.getHeight()}, tempShape.getPrinter().getCanvas());
+			tempShape = ShapeHandler.getShape(tempShape.getType(), tempShape.getColor(), tempShape.getSecondColor(), tempShape.getShade(), pastePoint, new int[] {tempShape.getWidth(), tempShape.getHeight()}, shapeManager.getCanvas());
 			shapeManager.add(tempShape);
 			pastePoint = new Point((pastePoint.getX() + tempShape.getWidth()) + 20, pastePoint.getY());
 		}
-		CanvasClear.clear();
-		ListOutput.execute(shapeManager.getShapes(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(shapeManager.getSelect(), ((IShape shape) -> {shape.outline();}));
+		shapeManager.print();
 	}
 
 }

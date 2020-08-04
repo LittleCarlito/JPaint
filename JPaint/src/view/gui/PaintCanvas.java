@@ -10,8 +10,8 @@ public class PaintCanvas extends PaintCanvasBase {
 	private static final long serialVersionUID = 1509453058678547085L;
 	private IShapeManager shapeManager;
 	
-	public PaintCanvas(IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
+	public PaintCanvas() {
+		this.shapeManager = new IShapeManager(this);
 		new CanvasClear(this);
 	}
 	

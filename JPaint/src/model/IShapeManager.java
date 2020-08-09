@@ -33,6 +33,7 @@ public class IShapeManager {
 	}
 	
 	public void select(IShape newShape) {
+		newShape.setSelect();
 		selectList.add(newShape);
 	}
 	
@@ -53,6 +54,7 @@ public class IShapeManager {
 	}
 
 	public void deSelect() {
+		ListOutput.execute(selectList, (IShape shape) -> {shape.deSelect();});
 		ListOutput.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
 		selectList.clear();
 	}

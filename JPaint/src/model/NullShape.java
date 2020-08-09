@@ -77,4 +77,16 @@ public class NullShape implements IShape {
 
 	}
 
+	@Override
+	public void setSelect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deSelect() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

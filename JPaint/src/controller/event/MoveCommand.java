@@ -21,6 +21,7 @@ public class MoveCommand implements IShapeCommand {
 	public void execute(IShape shape) {
 		Point newOrigin = new Point(shape.getOrigin().getX() - (_startPoint.getX() - _endPoint.getX()), shape.getOrigin().getY() - (_startPoint.getY() - _endPoint.getY()));
 		IShape newShape = shape.getCloneAt(newOrigin);
+		newShape.setSelect();
 		_shapeList.set(_shapeList.indexOf(shape), newShape);
 	}
 

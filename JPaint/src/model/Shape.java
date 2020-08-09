@@ -16,6 +16,7 @@ public class Shape implements IShape{
 	private Point sOrigin;
 	private int sWidth;
 	private int sHeight;
+	private boolean selected;
 	
 	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
 		sID = newID;
@@ -26,6 +27,7 @@ public class Shape implements IShape{
 		sOrigin = newOrigin;
 		sWidth = newWidth;
 		sHeight = newHeight;
+		selected = false;
 	}
 	
 	@Override
@@ -97,9 +99,19 @@ public class Shape implements IShape{
 	}
 	
 	@Override
+	public void setSelect() {
+		selected = true;
+	}
+	
+	@Override
+	public void deSelect() {
+		selected = false;
+	}
+	
+	@Override
 	public void print() {
+		if(selected) sOutline.print();
 		sPrinter.print(this);
-		sOutline.print();
 	}
 	
 }

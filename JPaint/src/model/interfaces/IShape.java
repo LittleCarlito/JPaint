@@ -20,4 +20,6 @@ public interface IShape{
 	public void print();
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);
+	public void setSelect();
+	public void deSelect();
 }

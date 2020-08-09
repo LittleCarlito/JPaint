@@ -23,6 +23,7 @@ public class ShapeHandler {
 		int outlineHeight = shape.getHeight() + 10;
 		IShape outline = ShapeFactory.getShape(shape.getType(), ShapeColor.BLACK, shape.getSecondColor(), shape.getShade(), outlineOrigin, new int[] {outlineWidth, outlineHeight});
 		outline.setPrinter(PrinterHandler.getOutliner(outline, printer.getCanvas()));
+		outline.setOutline(new NullShape());
 		shape.setOutline(outline);
 		return shape;
 	}

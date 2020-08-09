@@ -95,13 +95,9 @@ public class Shape implements IShape{
 	}
 	
 	@Override
-	public void outline() {
-		sOutline.print();
-	}
-	
-	@Override
 	public void print() {
 		sPrinter.print(this);
+		sOutline.print();
 	}
 	
 }

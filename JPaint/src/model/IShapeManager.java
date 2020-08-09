@@ -70,6 +70,5 @@ public class IShapeManager {
 		CanvasClear.clear();
 		ListOutput.execute(shapeList, ((IShape shape) -> {shape.print();}));
 		ListOutput.execute(selectList, ((IShape shape) -> {shape.print();}));
-		ListOutput.execute(selectList, ((IShape shape) -> {shape.outline();}));
 	}
 }

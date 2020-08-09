@@ -6,7 +6,7 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 
-public interface IShape {
+public interface IShape{
 	public int getID();
 	public ShapeType getType();
 	public ShapeColor getColor();
@@ -17,7 +17,6 @@ public interface IShape {
 	public int getHeight();
 	public IShape getCloneAt(Point newOrigin);
 	public boolean equals(Object obj);
-	public void outline();
 	public void print();
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);

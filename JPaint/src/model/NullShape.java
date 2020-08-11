@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
 
@@ -79,6 +81,42 @@ public class NullShape implements IShape {
 
 	@Override
 	public void setSelect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNoSelect() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void group(IShape shape) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void degroup() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<IShape> getGroup() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void groupPrint() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void select() {
 		// TODO Auto-generated method stub
 		
 	}

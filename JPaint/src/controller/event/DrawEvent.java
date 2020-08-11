@@ -1,8 +1,5 @@
 package controller.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
 import model.interfaces.IShape;
@@ -18,8 +15,18 @@ public class DrawEvent implements IMouseEvent{
 
 	public void execute() {
 		shapeManager.add(eventShape);
-		List<IShape> shapeList = new ArrayList<IShape>();
-		shapeList.add(eventShape);
 		shapeManager.print();
+		CommandHistory.add(this);
+	}
+
+	@Override
+	public void undo() {
+		shapeManager.remove(eventShape);
+		shapeManager.print();
+	}
+
+	@Override
+	public void redo() {
+		execute();
 	}
 }

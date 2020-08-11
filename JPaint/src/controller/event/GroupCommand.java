@@ -7,20 +7,27 @@ import controller.singletons.ListOutput;
 import model.IShapeManager;
 import model.interfaces.IShape;
 
-public class CopyCommand implements IMouseEvent {
+public class GroupCommand implements IMouseEvent {
 	
 	private IShapeManager shapeManager;
 	
-	public CopyCommand(IShapeManager shapeManager) {
+	public GroupCommand(IShapeManager shapeManager) {
 		this.shapeManager = shapeManager;
 	}
 
 	@Override
 	public void execute() {
-		shapeManager.clearClip();
 		List<IShape> selectList = shapeManager.getSelect();
-		List<IShape> clipList = shapeManager.getClip();
-		ListOutput.execute(selectList, (IShape shape) -> {clipList.add(shape);});
+		int selectSize = selectList.size();
+		IShape leadShape;
+		if(selectSize > 1) {
+			leadShape = selectList.get(0);
+			selectList.remove(0);
+			ListOutput.execute(selectList, (IShape shape) -> {leadShape.group(shape);});
+			selectList.clear();
+			selectList.add(leadShape);
+		}
+
 	}
 
 	@Override

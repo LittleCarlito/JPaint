@@ -7,20 +7,34 @@ import model.IShapeManager;
 import model.Point;
 
 public class MoveEvent implements IMouseEvent{
-	private Point startPoint;
-	private Point endPoint;
-	private IShapeManager shapeManager;
+	private Point _startPoint;
+	private Point _endPoint;
+	private IShapeManager _shapeManager;
 	
 	public MoveEvent(Point startPoint, Point endPoint, IShapeManager shapeManager) {
-		this.startPoint = startPoint;
-		this.endPoint = endPoint;
-		this.shapeManager = shapeManager;
+		_startPoint = startPoint;
+		_endPoint = endPoint;
+		_shapeManager = shapeManager;
 	}
 
 	public void execute() {
-		IShapeCommand mCommand = new MoveCommand(shapeManager.getSelect(), startPoint, endPoint);
-		ListOutput.execute(shapeManager.getSelect(), mCommand);
-		shapeManager.print();
+		move(_startPoint, _endPoint);
+		CommandHistory.add(this);
 	}
 
+	@Override
+	public void undo() {
+		move(_endPoint, _startPoint);
+	}
+
+	@Override
+	public void redo() {
+		execute();
+	}
+
+	private void move(Point startPoint, Point endPoint) {
+		IShapeCommand mCommand = new MoveCommand(_shapeManager.getSelect(), startPoint, endPoint);
+		ListOutput.execute(_shapeManager.getSelect(), mCommand);
+		_shapeManager.print();
+	}
 }

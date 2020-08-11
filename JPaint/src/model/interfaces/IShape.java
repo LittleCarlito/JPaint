@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import java.util.List;
+
 import controller.interfaces.IPrinter;
 import model.Point;
 import model.ShapeColor;
@@ -21,5 +23,11 @@ public interface IShape{
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);
 	public void setSelect();
+	public void setNoSelect();
+	public void group(IShape shape);
+	public void degroup();
+	public List<IShape> getGroup();
+	public void groupPrint();
+	public void select();
 	public void deSelect();
 }

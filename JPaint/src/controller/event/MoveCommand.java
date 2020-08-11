@@ -7,22 +7,22 @@ import model.Point;
 import model.interfaces.IShape;
 
 public class MoveCommand implements IShapeCommand {
-	private List<IShape> _shapeList;
-	private Point _startPoint;
-	private Point _endPoint;
+	private List<IShape> shapeList;
+	private Point startPoint;
+	private Point endPoint;
 	
 	public MoveCommand(List<IShape> shapeList, Point startPoint, Point endPoint) {
-		_shapeList = shapeList;
-		_startPoint = startPoint;
-		_endPoint = endPoint;
+		this.shapeList = shapeList;
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
 	}
 	
 	@Override
 	public void execute(IShape shape) {
-		Point newOrigin = new Point(shape.getOrigin().getX() - (_startPoint.getX() - _endPoint.getX()), shape.getOrigin().getY() - (_startPoint.getY() - _endPoint.getY()));
+		Point newOrigin = new Point(shape.getOrigin().getX() - (startPoint.getX() - endPoint.getX()), shape.getOrigin().getY() - (startPoint.getY() - endPoint.getY()));
 		IShape newShape = shape.getCloneAt(newOrigin);
 		newShape.setSelect();
-		_shapeList.set(_shapeList.indexOf(shape), newShape);
+		shapeList.set(shapeList.indexOf(shape), newShape);
 	}
 
 }

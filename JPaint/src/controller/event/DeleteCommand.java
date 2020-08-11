@@ -19,7 +19,6 @@ public class DeleteCommand implements IMouseEvent {
 		for(IShape shape : shapeManager.getSelect()) {
 			deleteList.add(shape);
 		}
-		
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class DeleteCommand implements IMouseEvent {
 
 	@Override
 	public void undo() {
-		System.out.println("Delete list has " + deleteList.size() + " items");
+//		System.out.println("Delete list has " + deleteList.size() + " items");
 		ListOutput.execute(deleteList, (IShape shape) -> {shapeManager.add(shape);});
 		shapeManager.print();
 	}

@@ -4,10 +4,19 @@ import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
 import model.printer.PrinterHandler;
 import view.interfaces.PaintCanvasBase;
+import workSpace.GroupCreator;
+import workSpace.IDrawable;
 
 public class ShapeHandler {
 	
 	public ShapeHandler() {
+	}
+	
+	public static IDrawable getGroup(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions, PaintCanvasBase canvas) {
+		IDrawable newShape = getShape(newType, newColor, newSecondColor, newShade, origin, dimensions, canvas);
+		IDrawable newGroup = GroupCreator.getGroup();
+		newGroup.add(newShape);
+		return newGroup;
 	}
 	
 	public static IShape getShape(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions, PaintCanvasBase canvas) {

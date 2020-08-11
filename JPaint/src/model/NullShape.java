@@ -4,6 +4,7 @@ import java.util.List;
 
 import controller.interfaces.IPrinter;
 import model.interfaces.IShape;
+import workSpace.IDrawable;
 
 public class NullShape implements IShape {
 
@@ -86,7 +87,7 @@ public class NullShape implements IShape {
 	}
 
 	@Override
-	public void setNoSelect() {
+	public void setDeselect() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -125,6 +126,18 @@ public class NullShape implements IShape {
 	public void deSelect() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean add(IDrawable o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(IDrawable o) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

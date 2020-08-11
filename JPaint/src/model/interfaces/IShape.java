@@ -7,9 +7,9 @@ import model.Point;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
+import workSpace.IDrawable;
 
-public interface IShape{
-	public int getID();
+public interface IShape extends IDrawable{
 	public ShapeType getType();
 	public ShapeColor getColor();
 	public ShapeColor getSecondColor();
@@ -19,11 +19,8 @@ public interface IShape{
 	public int getHeight();
 	public IShape getCloneAt(Point newOrigin);
 	public boolean equals(Object obj);
-	public void print();
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);
-	public void setSelect();
-	public void setNoSelect();
 	public void group(IShape shape);
 	public void degroup();
 	public List<IShape> getGroup();

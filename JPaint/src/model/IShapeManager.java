@@ -71,7 +71,7 @@ public class IShapeManager {
 	}
 
 	public void deSelect() {
-		ListOutput.execute(selectList, (IShape shape) -> {shape.setNoSelect();});
+		ListOutput.execute(selectList, (IShape shape) -> {shape.deSelect();});
 		ListOutput.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
 		selectList.clear();
 	}

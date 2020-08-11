@@ -8,8 +8,9 @@ import java.util.List;
 import controller.interfaces.IPrinter;
 import controller.singletons.ListOutput;
 import model.interfaces.IShape;
+import workSpace.IDrawable;
 
-public class Shape implements IShape{
+public class Shape implements IDrawable, IShape{
 	private int sID;
 	private IPrinter sPrinter;
 	private IShape sOutline;
@@ -131,9 +132,9 @@ public class Shape implements IShape{
 	}
 	
 	@Override
-	public void setNoSelect() {
+	public void setDeselect() {
 		deSelect();
-		ListOutput.execute(groupList, (IShape shape) -> {shape.setNoSelect();});
+		ListOutput.execute(groupList, (IShape shape) -> {shape.setDeselect();});
 	}
 	
 	@Override
@@ -162,5 +163,14 @@ public class Shape implements IShape{
 		}
 //		ListOutput.execute(groupList, (IShape shape) -> {shape.print();});
 	}
-	
+
+	@Override
+	public boolean add(IDrawable o) {
+		return false;
+	}
+
+	@Override
+	public boolean remove(IDrawable o) {
+		return false;
+	}
 }

@@ -26,9 +26,9 @@ public class IShapeManager {
 	
 	public void remove(IShape shape) {
 		boolean shapeListCheck = shapeList.contains(shape);
-		int shapeIndex = shapeList.indexOf(shape);
 		boolean selectListCheck = selectList.contains(shape);
-		int selectIndex = selectList.indexOf(shape);
+//		int shapeIndex = shapeList.indexOf(shape);
+//		int selectIndex = selectList.indexOf(shape);
 //		System.out.println("\nShape to undo was in shapeList: " + shapeListCheck + "\nIts index is: " + shapeIndex);
 //		System.out.println("Shape to undo was in shapeList: " + selectListCheck + "\nIts index is: " + selectIndex);
 		if(shapeListCheck) {
@@ -89,8 +89,8 @@ public class IShapeManager {
 		CanvasClear.clear();
 		ListOutput.execute(shapeList, ((IShape shape) -> {shape.groupPrint();}));
 		ListOutput.execute(selectList, ((IShape shape) -> {shape.groupPrint();}));
-		ListOutput.execute(shapeList, ((IShape shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
-		ListOutput.execute(selectList, ((IShape shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+//		ListOutput.execute(shapeList, ((IShape shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
+//		ListOutput.execute(selectList, ((IShape shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
 
 	}
 }

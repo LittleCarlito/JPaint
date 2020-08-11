@@ -1,8 +1,6 @@
 package controller.event;
 
 import controller.interfaces.IMouseEvent;
-import controller.interfaces.IShapeCommand;
-import controller.singletons.ListOutput;
 import model.IShapeManager;
 import model.Point;
 
@@ -18,23 +16,21 @@ public class MoveEvent implements IMouseEvent{
 	}
 
 	public void execute() {
-		move(_startPoint, _endPoint);
+		IMouseEvent mCommand = new MoveCommand(_shapeManager.getSelect(), _startPoint, _endPoint);
+		mCommand.execute();
+		_shapeManager.print();
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void undo() {
-		move(_endPoint, _startPoint);
+		IMouseEvent mCommand = new MoveCommand(_shapeManager.getSelect(), _endPoint, _startPoint);
+		mCommand.execute();
+		_shapeManager.print();
 	}
 
 	@Override
 	public void redo() {
 		execute();
-	}
-
-	private void move(Point startPoint, Point endPoint) {
-		IShapeCommand mCommand = new MoveCommand(_shapeManager.getSelect(), startPoint, endPoint);
-		ListOutput.execute(_shapeManager.getSelect(), mCommand);
-		_shapeManager.print();
 	}
 }

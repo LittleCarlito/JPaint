@@ -15,11 +15,16 @@ public class MoveEvent implements IMouseEvent{
 		_shapeManager = shapeManager;
 	}
 
+	@Override
 	public void execute() {
+		run();
+		CommandHistory.add(this);
+	}
+	
+	private void run() {
 		IMouseEvent mCommand = new MoveCommand(_shapeManager.getSelect(), _startPoint, _endPoint);
 		mCommand.execute();
 		_shapeManager.print();
-		CommandHistory.add(this);
 	}
 
 	@Override
@@ -31,6 +36,6 @@ public class MoveEvent implements IMouseEvent{
 
 	@Override
 	public void redo() {
-		execute();
+		run();
 	}
 }

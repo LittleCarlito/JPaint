@@ -13,10 +13,15 @@ public class DrawEvent implements IMouseEvent{
 		eventShape = nShape;
 	}
 
+	@Override
 	public void execute() {
+		run();
+		CommandHistory.add(this);
+	}
+	
+	private void run() {
 		shapeManager.add(eventShape);
 		shapeManager.print();
-		CommandHistory.add(this);
 	}
 
 	@Override
@@ -27,6 +32,6 @@ public class DrawEvent implements IMouseEvent{
 
 	@Override
 	public void redo() {
-		execute();
+		run();
 	}
 }

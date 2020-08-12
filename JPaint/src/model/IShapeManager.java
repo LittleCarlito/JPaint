@@ -30,6 +30,10 @@ public class IShapeManager {
 		}
 	}
 	
+	public static void unGroup(List<IDrawable> groupList) {
+		
+	}
+	
 	public static void addSelect(IDrawable newSelect) {
 		selectList.add(newSelect);
 	}
@@ -41,10 +45,6 @@ public class IShapeManager {
 	public static void removeGroup(IDrawable drawObject) {
 		boolean shapeListCheck = shapeList.contains(drawObject);
 		boolean selectListCheck = selectList.contains(drawObject);
-//		int shapeIndex = shapeList.indexOf(shape);
-//		int selectIndex = selectList.indexOf(shape);
-//		System.out.println("\nShape to undo was in shapeList: " + shapeListCheck + "\nIts index is: " + shapeIndex);
-//		System.out.println("Shape to undo was in shapeList: " + selectListCheck + "\nIts index is: " + selectIndex);
 		if(shapeListCheck) {
 			shapeList.remove(shapeList.indexOf(drawObject));
 		}
@@ -79,7 +79,6 @@ public class IShapeManager {
 				selectList.remove(drawObject);
 			}
 		}
-//		ListOutput.execute(removeList, (IDrawable shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
 	public static void deSelect() {
@@ -105,9 +104,6 @@ public class IShapeManager {
 		CanvasClear.clear();
 		ListOutput.execute(shapeList, ((IDrawable shape) -> {shape.print();}));
 		ListOutput.execute(selectList, ((IDrawable shape) -> {shape.print();}));
-//		ListOutput.execute(shapeList, ((IShape shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
-//		ListOutput.execute(selectList, ((IShape shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
-
 	}
 	
 	public static void soundOff() {

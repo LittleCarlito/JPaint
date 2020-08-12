@@ -32,6 +32,10 @@ public class IShapeManager {
 		}
 	}
 	
+	public void addSelect(IDrawable newSelect) {
+		selectList.add(newSelect);
+	}
+	
 	public void addGroup(IDrawable drawObject) {
 		shapeList.add(drawObject);
 	}
@@ -92,7 +96,15 @@ public class IShapeManager {
 	}
 	
 	public void cleanShapeList(List<IDrawable> removeList) {
-		ListOutput.execute(removeList, (IDrawable shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
+		for(IDrawable drawObject : removeList) {
+			if(shapeList.contains(drawObject)) {
+				shapeList.remove(drawObject);
+			}
+			else if(selectList.contains(drawObject)) {
+				selectList.remove(drawObject);
+			}
+		}
+//		ListOutput.execute(removeList, (IDrawable shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
 	public void deSelect() {

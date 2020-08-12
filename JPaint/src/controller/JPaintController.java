@@ -2,7 +2,7 @@ package controller;
 
 import controller.event.CommandHistory;
 import controller.event.CopyCommand;
-//import controller.event.DeleteCommand;
+import controller.event.DeleteCommand;
 //import controller.event.GroupCommand;
 import controller.event.PasteCommand;
 import controller.interfaces.IJPaintController;
@@ -35,7 +35,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.COPY, () -> new CopyCommand(shapeManager).execute());
         uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(shapeManager).execute());
-//        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(shapeManager).execute());
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(shapeManager).execute());
 //        uiModule.addEvent(EventName.GROUP, () -> new GroupCommand(shapeManager).execute());
         uiModule.addEvent(EventName.UNDO, () -> CommandHistory.undo());
         uiModule.addEvent(EventName.REDO, () -> CommandHistory.redo());

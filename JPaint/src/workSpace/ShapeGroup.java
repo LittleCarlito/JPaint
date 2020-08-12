@@ -3,6 +3,7 @@ package workSpace;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Point;
 import model.Shape;
 import model.interfaces.IShape;
 
@@ -79,5 +80,12 @@ public class ShapeGroup implements IDrawable{
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void move(Point moveDimension) {
+		for (IDrawable drawObject : groupList) {
+			drawObject.move(moveDimension);
+		}
 	}
 }

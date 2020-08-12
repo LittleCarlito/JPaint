@@ -120,4 +120,10 @@ public class NullShape implements IShape {
 		return false;
 	}
 
+	@Override
+	public void move(Point moveDimension) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

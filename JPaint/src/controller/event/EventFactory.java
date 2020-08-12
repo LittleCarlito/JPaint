@@ -27,8 +27,7 @@ public class EventFactory{
 	}
 	
 	public static IMouseEvent getMove(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
-//		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
-		return null;
+		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
 	}
 	
 	private static void getEventShape(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {

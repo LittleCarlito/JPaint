@@ -142,4 +142,10 @@ public class Shape implements IDrawable, IShape{
 	public boolean remove(IDrawable o) {
 		return false;
 	}
+
+	@Override
+	public void move(Point moveDimension) {
+		sOrigin = new Point(sOrigin.getX() - moveDimension.getX(), sOrigin.getY() - moveDimension.getY());
+		sOutline.move(moveDimension);
+	}
 }

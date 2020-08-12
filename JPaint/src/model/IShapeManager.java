@@ -125,6 +125,10 @@ public class IShapeManager {
 		ListOutput.execute(shapeList, ((IDrawable shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
 		System.out.println("\nSelect list ids: ");
 		ListOutput.execute(selectList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		System.out.println("\nClip board ids: ");
+		ListOutput.execute(clipList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		System.out.println("\nDelete list ids: ");
+		ListOutput.execute(deleteList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
 		System.out.println("----------------------------------------------------------------------------------------\n");
 	}
 }

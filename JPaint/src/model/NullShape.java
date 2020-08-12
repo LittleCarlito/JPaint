@@ -55,12 +55,6 @@ public class NullShape implements IShape {
 	}
 
 	@Override
-	public IShape getCloneAt(Point newOrigin) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void print() {
 		// TODO Auto-generated method stub
 

@@ -15,7 +15,6 @@ public interface IShape extends IDrawable{
 	public Point getOrigin();
 	public int getWidth();
 	public int getHeight();
-	public IShape getCloneAt(Point newOrigin);
 	public boolean equals(Object obj);
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);

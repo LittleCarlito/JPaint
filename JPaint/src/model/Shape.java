@@ -85,12 +85,6 @@ public class Shape implements IDrawable, IShape{
 	}
 
 	@Override
-	public IShape getCloneAt(Point newOrigin) {
-		IShape newShape = new Shape(sID, sType, sColor, sSecondColor, sShade, newOrigin, sWidth, sHeight);
-		return ShapeHandler.outlineShape(newShape, sPrinter);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -158,6 +152,7 @@ public class Shape implements IDrawable, IShape{
 	@Override
 	public Point pasteOrigin(Point pastePoint) {
 		sOrigin = pastePoint;
+		sOutline.pasteOrigin(new Point(pastePoint.getX() - 5, pastePoint.getY() - 5));
 		return new Point(pastePoint.getX()+ (sWidth + 20), pastePoint.getY());
 	}
 }

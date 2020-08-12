@@ -25,7 +25,7 @@ public class ShapeHandler {
 		return outlineShape(newShape, newPrinter);
 	}
 	
-	public static IShape outlineShape(IShape shape, IPrinter printer) {
+	private static IShape outlineShape(IShape shape, IPrinter printer) {
 		shape.setPrinter(printer);
 		Point outlineOrigin = new Point(shape.getOrigin().getX() - 5, shape.getOrigin().getY() - 5);
 		int outlineWidth = shape.getWidth() + 10;

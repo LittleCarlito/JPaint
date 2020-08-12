@@ -62,7 +62,7 @@ public class ShapeGroup implements IDrawable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Shape other = (Shape) obj;
+		ShapeGroup other = (ShapeGroup) obj;
 		if (id == other.getID()) {
 			return true;
 		}

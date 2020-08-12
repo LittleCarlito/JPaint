@@ -1,7 +1,5 @@
 package controller.event;
 
-import java.util.List;
-
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
 import model.Point;
@@ -27,18 +25,12 @@ public class MoveEvent implements IMouseEvent{
 	private void run() {
 		moveShapes(_startPoint, _endPoint);
 		_shapeManager.print();
-//		IMouseEvent mCommand = new MoveCommand(shapeManager.getSelect(), startPoint, endPoint);
-//		mCommand.execute();
-//		shapeManager.print();
 	}
 
 	@Override
 	public void undo() {
 		moveShapes(_endPoint, _startPoint);
 		_shapeManager.print();
-//		IMouseEvent mCommand = new MoveCommand(shapeManager.getSelect(), endPoint, startPoint);
-//		mCommand.execute();
-//		shapeManager.print();
 	}
 
 	@Override
@@ -52,9 +44,5 @@ public class MoveEvent implements IMouseEvent{
 			moveDimension = new Point((startPoint.getX() - endPoint.getX()), (startPoint.getY() - endPoint.getY()));
 			drawObject.move(moveDimension);
 		}
-//		Point newOrigin = new Point(shape.getOrigin().getX() - (startPoint.getX() - endPoint.getX()),shape.getOrigin().getY() - (startPoint.getY() - endPoint.getY()));
-//		IShape newShape = shape.getCloneAt(newOrigin);
-//		newShape.setSelect();
-//		shapeList.set(shapeList.indexOf(shape), newShape);
 	}
 }

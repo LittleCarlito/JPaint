@@ -9,15 +9,13 @@ import model.Point;
 import workSpace.IDrawable;
 
 public class PasteCommand implements IMouseEvent {
-	
-	private IShapeManager shapeManager;
+
 	private Point pastePoint;
 	private List<IDrawable> clipList;
 	private List<IDrawable> newList;
 	
-	public PasteCommand(IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
-		clipList = shapeManager.getClip();
+	public PasteCommand() {
+		clipList = IShapeManager.getClip();
 		newList = new ArrayList<IDrawable>();
 	}
 
@@ -33,16 +31,16 @@ public class PasteCommand implements IMouseEvent {
 		for(IDrawable drawObject : clipList) {
 			newObject = drawObject.getClone();
 			pastePoint = newObject.pasteOrigin(pastePoint);
-			shapeManager.addGroup(newObject);
+			IShapeManager.addGroup(newObject);
 			newList.add(newObject);
 		}
-		shapeManager.print();
+		IShapeManager.print();
 	}
 
 	@Override
 	public void undo() {
-		shapeManager.cleanShapeList(newList);
-		shapeManager.print();
+		IShapeManager.cleanShapeList(newList);
+		IShapeManager.print();
 	}
 
 	@Override

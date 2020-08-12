@@ -5,21 +5,19 @@ import model.IShapeManager;
 import model.interfaces.IShape;
 
 public class SelectEvent implements IMouseEvent{
-	private IShapeManager shapeManager;
 	private IShape eventShape;
 	
-	public SelectEvent (IShape eventShape, IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
+	public SelectEvent (IShape eventShape) {
 		this.eventShape = eventShape;
 	}
 	
 	@Override
 	public void execute() {
-		shapeManager.deSelect();
-		shapeManager.selectWithin(eventShape);
-		shapeManager.cleanShapeList(shapeManager.getSelect());
-		shapeManager.print();
-		shapeManager.soundOff();
+		IShapeManager.deSelect();
+		IShapeManager.selectWithin(eventShape);
+		IShapeManager.cleanShapeList(IShapeManager.getSelect());
+		IShapeManager.print();
+		IShapeManager.soundOff();
 	}
 
 	@Override

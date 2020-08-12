@@ -9,36 +9,33 @@ import model.IShapeManager;
 import workSpace.IDrawable;
 
 public class DeleteCommand implements IMouseEvent {
-	
-	private IShapeManager shapeManager;
 	private List<IDrawable> deleteList;
 	
-	public DeleteCommand(IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
+	public DeleteCommand() {
 		deleteList = new ArrayList<IDrawable>();
-		for(IDrawable drawObject : shapeManager.getSelect()) {
+		for(IDrawable drawObject : IShapeManager.getSelect()) {
 			deleteList.add(drawObject);
 		}
 	}
 
 	@Override
 	public void execute() {
-		shapeManager.deleteCommand();
-		shapeManager.print();
+		IShapeManager.deleteCommand();
+		IShapeManager.print();
 		CommandHistory.add(this);
 	}
 
 	@Override
 	public void undo() {
 //		System.out.println("Delete list has " + deleteList.size() + " items");
-		ListOutput.execute(deleteList, (IDrawable drawObject) -> {shapeManager.addSelect(drawObject);});
-		shapeManager.print();
+		ListOutput.execute(deleteList, (IDrawable drawObject) -> {IShapeManager.addSelect(drawObject);});
+		IShapeManager.print();
 	}
 
 	@Override
 	public void redo() {
-		shapeManager.cleanShapeList(deleteList);
-		shapeManager.print();
+		IShapeManager.cleanShapeList(deleteList);
+		IShapeManager.print();
 	}
 
 }

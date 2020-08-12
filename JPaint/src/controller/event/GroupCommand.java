@@ -9,12 +9,10 @@ import workSpace.IDrawable;
 
 public class GroupCommand implements IMouseEvent {
 	
-	private IShapeManager shapeManager;
 	private List<IDrawable> groupList = new ArrayList<IDrawable>();
 	
-	public GroupCommand(IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
-		for(IDrawable drawObject : shapeManager.getSelect()) {
+	public GroupCommand() {
+		for(IDrawable drawObject : IShapeManager.getSelect()) {
 			groupList.add(drawObject);
 		}
 		
@@ -34,10 +32,10 @@ public class GroupCommand implements IMouseEvent {
 			for(IDrawable drawObject : groupList) {
 				leadGroup.add(drawObject);
 			}
-			shapeManager.clearSelect();
-			shapeManager.addSelect(leadGroup);
+			IShapeManager.clearSelect();
+			IShapeManager.addSelect(leadGroup);
 		}
-		shapeManager.soundOff();
+		IShapeManager.soundOff();
 	}
 
 	@Override

@@ -5,11 +5,9 @@ import model.IShapeManager;
 import workSpace.IDrawable;
 
 public class DrawEvent implements IMouseEvent{
-	private IShapeManager shapeManager;
 	private IDrawable eventShape;
 	
-	public DrawEvent(IDrawable nShape, IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
+	public DrawEvent(IDrawable nShape) {
 		eventShape = nShape;
 	}
 
@@ -20,14 +18,14 @@ public class DrawEvent implements IMouseEvent{
 	}
 	
 	private void run() {
-		shapeManager.addGroup(eventShape);
-		shapeManager.print();
+		IShapeManager.addGroup(eventShape);
+		IShapeManager.print();
 	}
 
 	@Override
 	public void undo() {
-		shapeManager.removeGroup(eventShape);
-		shapeManager.print();
+		IShapeManager.removeGroup(eventShape);
+		IShapeManager.print();
 	}
 
 	@Override

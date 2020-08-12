@@ -8,12 +8,10 @@ import workSpace.IDrawable;
 public class MoveEvent implements IMouseEvent{
 	private Point _startPoint;
 	private Point _endPoint;
-	private IShapeManager _shapeManager;
 	
-	public MoveEvent(Point startPoint, Point endPoint, IShapeManager shapeManager) {
+	public MoveEvent(Point startPoint, Point endPoint) {
 		_startPoint = startPoint;
 		_endPoint = endPoint;
-		_shapeManager = shapeManager;
 	}
 
 	@Override
@@ -24,13 +22,13 @@ public class MoveEvent implements IMouseEvent{
 	
 	private void run() {
 		moveShapes(_startPoint, _endPoint);
-		_shapeManager.print();
+		IShapeManager.print();
 	}
 
 	@Override
 	public void undo() {
 		moveShapes(_endPoint, _startPoint);
-		_shapeManager.print();
+		IShapeManager.print();
 	}
 
 	@Override
@@ -40,7 +38,7 @@ public class MoveEvent implements IMouseEvent{
 	
 	private void moveShapes(Point startPoint, Point endPoint) {
 		Point moveDimension;
-		for(IDrawable drawObject : _shapeManager.getSelect()) {
+		for(IDrawable drawObject : IShapeManager.getSelect()) {
 			moveDimension = new Point((startPoint.getX() - endPoint.getX()), (startPoint.getY() - endPoint.getY()));
 			drawObject.move(moveDimension);
 		}

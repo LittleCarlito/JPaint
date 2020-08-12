@@ -9,19 +9,16 @@ import workSpace.IDrawable;
 
 public class CopyCommand implements IMouseEvent {
 	
-	private IShapeManager shapeManager;
-	
-	public CopyCommand(IShapeManager shapeManager) {
-		this.shapeManager = shapeManager;
+	public CopyCommand() {
 	}
 
 	@Override
 	public void execute() {
-		shapeManager.clearClip();
-		List<IDrawable> selectList = shapeManager.getSelect();
-		List<IDrawable> clipList = shapeManager.getClip();
+		IShapeManager.clearClip();
+		List<IDrawable> selectList = IShapeManager.getSelect();
+		List<IDrawable> clipList = IShapeManager.getClip();
 		ListOutput.execute(selectList, (IDrawable shape) -> {clipList.add(shape);});
-		shapeManager.soundOff();
+		IShapeManager.soundOff();
 	}
 
 	@Override

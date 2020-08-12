@@ -7,40 +7,38 @@ import java.util.Stack;
 import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
 import model.interfaces.IShape;
-import view.interfaces.PaintCanvasBase;
 import workSpace.IDrawable;
 
 public class IShapeManager {
-	private List<IDrawable> shapeList;
-	private List<IDrawable> selectList;
-	private List<IDrawable> clipList;
-	private Stack<IDrawable> deleteList;
-	private PaintCanvasBase canvas;
+	private static List<IDrawable> shapeList;
+	private static List<IDrawable> selectList;
+	private static List<IDrawable> clipList;
+	private static Stack<IDrawable> deleteList;
+
 	
-	public IShapeManager(PaintCanvasBase canvas) {
-		this.canvas = canvas;
+	public IShapeManager() {
 		shapeList = new ArrayList<IDrawable>();
 		selectList = new ArrayList<IDrawable>();
 		clipList = new ArrayList<IDrawable>();
 		deleteList = new Stack<IDrawable>();
 	}
 	
-	public void selectWithin(IShape selectShape) {
+	public static void selectWithin(IShape selectShape) {
 		for(IDrawable drawObject : shapeList) {
 			if(drawObject.collides(selectShape))
 				selectList.add(drawObject);
 		}
 	}
 	
-	public void addSelect(IDrawable newSelect) {
+	public static void addSelect(IDrawable newSelect) {
 		selectList.add(newSelect);
 	}
 	
-	public void addGroup(IDrawable drawObject) {
+	public static void addGroup(IDrawable drawObject) {
 		shapeList.add(drawObject);
 	}
 	
-	public void removeGroup(IDrawable drawObject) {
+	public static void removeGroup(IDrawable drawObject) {
 		boolean shapeListCheck = shapeList.contains(drawObject);
 		boolean selectListCheck = selectList.contains(drawObject);
 //		int shapeIndex = shapeList.indexOf(shape);
@@ -55,28 +53,24 @@ public class IShapeManager {
 		}
 	}
 	
-	public PaintCanvasBase getCanvas() {
-		return canvas;
-	}
-	
-	public void select(IShape newShape) {
+	public static void select(IShape newShape) {
 		newShape.setSelect();
 		selectList.add(newShape);
 	}
 	
-	public List<IDrawable> getShapes() {
+	public static List<IDrawable> getShapes() {
 		return shapeList;
 	}
 	
-	public List<IDrawable> getSelect() {
+	public static List<IDrawable> getSelect() {
 		return selectList;
 	}
 	
-	public List<IDrawable> getClip(){
+	public static List<IDrawable> getClip(){
 		return clipList;
 	}
 	
-	public void cleanShapeList(List<IDrawable> removeList) {
+	public static void cleanShapeList(List<IDrawable> removeList) {
 		for(IDrawable drawObject : removeList) {
 			if(shapeList.contains(drawObject)) {
 				shapeList.remove(drawObject);
@@ -88,26 +82,26 @@ public class IShapeManager {
 //		ListOutput.execute(removeList, (IDrawable shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
-	public void deSelect() {
+	public static void deSelect() {
 		ListOutput.execute(selectList, (IDrawable shape) -> {shape.setDeselect();});
 		ListOutput.execute(selectList, (IDrawable shape) -> {shapeList.add(shape);});
 		selectList.clear();
 	}
 	
-	public void clearSelect() {
+	public static void clearSelect() {
 		selectList.clear();
 	}
 	
-	public void clearClip() {
+	public static void clearClip() {
 		clipList.clear();
 	}
 	
-	public void deleteCommand() {
+	public static void deleteCommand() {
 		ListOutput.execute(selectList, (IDrawable shape) -> {deleteList.push(shape);});
 		selectList.clear();
 	}
 	
-	public void print() {
+	public static void print() {
 		CanvasClear.clear();
 		ListOutput.execute(shapeList, ((IDrawable shape) -> {shape.print();}));
 		ListOutput.execute(selectList, ((IDrawable shape) -> {shape.print();}));
@@ -116,7 +110,7 @@ public class IShapeManager {
 
 	}
 	
-	public void soundOff() {
+	public static void soundOff() {
 		System.out.println("\n----------------------------------------------------------------------------------------");
 		System.out.println("Shape list ids: ");
 		ListOutput.execute(shapeList, ((IDrawable shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));

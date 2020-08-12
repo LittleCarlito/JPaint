@@ -18,16 +18,22 @@ public class EventFactory{
 	
 	public static IMouseEvent getDraw(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
 		getEventShape(startPoint, endPoint, baseCanvas, baseState);
-		return new DrawEvent(eventShape, baseCanvas.getShapeManager());
+//		return new DrawEvent(eventShape, baseCanvas.getShapeManager());
+		return new DrawEvent(eventShape);
+
 	}
 	
 	public static IMouseEvent getSelect(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
 		getSelectShape(startPoint, endPoint, baseCanvas, baseState);
-		return new SelectEvent(selectShape, baseCanvas.getShapeManager());
+//		return new SelectEvent(selectShape, baseCanvas.getShapeManager());
+		return new SelectEvent(selectShape);
+
 	}
 	
 	public static IMouseEvent getMove(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
-		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
+//		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
+		return new MoveEvent(startPoint, endPoint);
+
 	}
 	
 	private static void getEventShape(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {

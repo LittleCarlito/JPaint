@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Point;
-import model.Shape;
 import model.interfaces.IShape;
 
 public class ShapeGroup implements IDrawable{
@@ -87,5 +86,23 @@ public class ShapeGroup implements IDrawable{
 		for (IDrawable drawObject : groupList) {
 			drawObject.move(moveDimension);
 		}
+	}
+
+	@Override
+	public IDrawable getClone() {
+		IDrawable groupCopy = GroupCreator.getGroup();
+		for(IDrawable drawObject : groupList) {
+			groupCopy.add(drawObject.getClone());
+		}
+		return groupCopy;
+	}
+
+	@Override
+	public Point pasteOrigin(Point pastePoint) {
+		Point newOrigin = pastePoint;
+		for(IDrawable drawObject : groupList) {
+			newOrigin = drawObject.pasteOrigin(newOrigin);
+		}
+		return newOrigin;
 	}
 }

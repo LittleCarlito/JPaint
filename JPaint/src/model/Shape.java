@@ -148,4 +148,16 @@ public class Shape implements IDrawable, IShape{
 		sOrigin = new Point(sOrigin.getX() - moveDimension.getX(), sOrigin.getY() - moveDimension.getY());
 		sOutline.move(moveDimension);
 	}
+
+	@Override
+	public IDrawable getClone() {
+		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
+
+	}
+
+	@Override
+	public Point pasteOrigin(Point pastePoint) {
+		sOrigin = pastePoint;
+		return new Point(pastePoint.getX()+ (sWidth + 20), pastePoint.getY());
+	}
 }

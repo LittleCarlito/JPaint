@@ -126,4 +126,16 @@ public class NullShape implements IShape {
 		
 	}
 
+	@Override
+	public IDrawable getClone() {
+		// TODO Auto-generated method stub
+		return new NullShape();
+	}
+
+	@Override
+	public Point pasteOrigin(Point pastePoint) {
+		// TODO Auto-generated method stub
+		return pastePoint;
+	}
+
 }

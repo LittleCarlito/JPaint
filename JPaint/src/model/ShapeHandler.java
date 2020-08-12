@@ -14,8 +14,7 @@ public class ShapeHandler {
 	
 	public static IDrawable getGroup(ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point origin, int[] dimensions, PaintCanvasBase canvas) {
 		IDrawable newShape = getShape(newType, newColor, newSecondColor, newShade, origin, dimensions, canvas);
-		IDrawable newGroup = GroupCreator.getGroup();
-		newGroup.add(newShape);
+		IDrawable newGroup = GroupCreator.getGroup(newShape);
 		return newGroup;
 	}
 	

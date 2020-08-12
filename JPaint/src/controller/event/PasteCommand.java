@@ -31,6 +31,7 @@ public class PasteCommand implements IMouseEvent {
 		for(IDrawable drawObject : clipList) {
 			newObject = drawObject.getClone();
 			pastePoint = newObject.pasteOrigin(pastePoint);
+//			newObject.soundOff();
 			IShapeManager.addGroup(newObject);
 			newList.add(newObject);
 		}

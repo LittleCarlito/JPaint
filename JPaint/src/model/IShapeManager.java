@@ -53,7 +53,7 @@ public class IShapeManager {
 		}
 	}
 	
-	public static void select(IShape newShape) {
+	public static void select(IDrawable newShape) {
 		newShape.setSelect();
 		selectList.add(newShape);
 	}
@@ -108,14 +108,24 @@ public class IShapeManager {
 	
 	public static void soundOff() {
 		System.out.println("\n----------------------------------------------------------------------------------------");
-		System.out.println("Shape list ids: ");
-		ListOutput.execute(shapeList, ((IDrawable shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
+		System.out.println("Shape list: ");
+		ListOutput.execute(shapeList, ((IDrawable shape) -> {shape.soundOff();}));
 		System.out.println("\nSelect list ids: ");
-		ListOutput.execute(selectList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		ListOutput.execute(selectList, ((IDrawable shape) -> {shape.soundOff();}));
 		System.out.println("\nClip board ids: ");
-		ListOutput.execute(clipList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		ListOutput.execute(clipList, ((IDrawable shape) -> {shape.soundOff();}));
 		System.out.println("\nDelete list ids: ");
-		ListOutput.execute(deleteList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		ListOutput.execute(deleteList, ((IDrawable shape) -> {shape.soundOff();}));
 		System.out.println("----------------------------------------------------------------------------------------\n");
+//		System.out.println("\n----------------------------------------------------------------------------------------");
+//		System.out.println("Shape list ids: ");
+//		ListOutput.execute(shapeList, ((IDrawable shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
+//		System.out.println("\nSelect list ids: ");
+//		ListOutput.execute(selectList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+//		System.out.println("\nClip board ids: ");
+//		ListOutput.execute(clipList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+//		System.out.println("\nDelete list ids: ");
+//		ListOutput.execute(deleteList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+//		System.out.println("----------------------------------------------------------------------------------------\n");
 	}
 }

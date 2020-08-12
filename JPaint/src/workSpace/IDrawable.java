@@ -14,5 +14,7 @@ public interface IDrawable {
 	public Point pasteOrigin(Point pastePoint);
 	public void setSelect();
 	public void setDeselect();
+	public boolean ungroup();
 	public void print();
+	public void soundOff();
 }

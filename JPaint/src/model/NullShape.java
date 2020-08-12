@@ -132,4 +132,16 @@ public class NullShape implements IShape {
 		return pastePoint;
 	}
 
+	@Override
+	public boolean ungroup() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void soundOff() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

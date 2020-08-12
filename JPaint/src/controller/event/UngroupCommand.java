@@ -1,5 +1,6 @@
 package controller.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.interfaces.IMouseEvent;
@@ -7,7 +8,7 @@ import model.IShapeManager;
 import workSpace.IDrawable;
 
 public class UngroupCommand implements IMouseEvent {
-	private List<IDrawable> groupList;
+	private List<IDrawable> groupList = new ArrayList<IDrawable>();
 	
 	public UngroupCommand() {
 		for(IDrawable drawObject : IShapeManager.getSelect()) {
@@ -22,13 +23,9 @@ public class UngroupCommand implements IMouseEvent {
 	}
 	
 	private void run() {
-//		IShapeManager.unGroup(groupList);
+		IShapeManager.deSelect();
 		for(IDrawable drawObject : groupList) {
-			// Make ungroup a thing on IShapes and ShapeGroups
-				// boolean method
-				// returns false for shapes and true for ShapeGroups once they are down to one shape
-				// or consider making ShapeGroups have a base IShape then you can just have every group dump its contents in ShapeList effectively seperating all of them
-			drawObject.unGroup();
+			drawObject.ungroup();
 		}
 		IShapeManager.print();
 		IShapeManager.soundOff();
@@ -36,8 +33,9 @@ public class UngroupCommand implements IMouseEvent {
 
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
-
+//		for(IDrawable drawObject : groupList) {
+//			IShapeManager.select
+//		}
 	}
 
 	@Override

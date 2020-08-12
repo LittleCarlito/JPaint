@@ -3,17 +3,21 @@ package workSpace;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.IShapeManager;
 import model.Point;
 import model.interfaces.IShape;
 
 public class ShapeGroup implements IDrawable{
 	
 	private final int id;
+	private final int baseShapeId;
 	private List<IDrawable> groupList;
 	
-	public ShapeGroup(int id) {
-		this.id = id;
+	public ShapeGroup(int groupId, IDrawable baseShape) {
+		baseShapeId = baseShape.getID();
+		id = groupId;
 		groupList = new ArrayList<IDrawable>();
+		groupList.add(baseShape);
 	}
 	
 	@Override
@@ -95,8 +99,20 @@ public class ShapeGroup implements IDrawable{
 
 	@Override
 	public IDrawable getClone() {
-		IDrawable groupCopy = GroupCreator.getGroup();
-		for(IDrawable drawObject : groupList) {
+		int baseIndex = -1;
+		IDrawable baseShape;
+		List<IDrawable> listCopy = new ArrayList<IDrawable>();
+		for (IDrawable drawObject : groupList) {
+			if (drawObject.getID() == baseShapeId) {
+				baseIndex = groupList.indexOf(drawObject);
+			}
+			else {
+				listCopy.add(drawObject);
+			}
+		}
+		baseShape = groupList.get(baseIndex).getClone();
+		IDrawable groupCopy = GroupCreator.getGroup(baseShape);
+		for (IDrawable drawObject : listCopy) {
 			groupCopy.add(drawObject.getClone());
 		}
 		return groupCopy;
@@ -109,5 +125,28 @@ public class ShapeGroup implements IDrawable{
 			newOrigin = drawObject.pasteOrigin(newOrigin);
 		}
 		return newOrigin;
+	}
+
+	@Override
+	public boolean ungroup() {
+		List<IDrawable> cleanList = new ArrayList<IDrawable>();
+		for(IDrawable drawObject : groupList) {
+			if(drawObject.getID() != baseShapeId) {
+				IShapeManager.addGroup(drawObject);
+				cleanList.add(drawObject);
+			}
+		}
+		for(IDrawable drawObject : cleanList) {
+			groupList.remove(drawObject);
+		}
+		return (cleanList.size() > 0 ? true : false);
+	}
+	
+	@Override
+	public void soundOff() {
+		System.out.println("Group ID and baseShape Id: " + id + " " + baseShapeId + "\nContaining Ids: ");
+		for(IDrawable drawObject : groupList) {
+			System.out.print(drawObject.getID() + "\n");
+		}
 	}
 }

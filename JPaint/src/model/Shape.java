@@ -155,4 +155,15 @@ public class Shape implements IDrawable, IShape{
 		sOutline.pasteOrigin(new Point(pastePoint.getX() - 5, pastePoint.getY() - 5));
 		return new Point(pastePoint.getX()+ (sWidth + 20), pastePoint.getY());
 	}
+
+	@Override
+	public boolean ungroup() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void soundOff() {
+		System.out.println("Base shape - ID: " + sID);
+	}
 }

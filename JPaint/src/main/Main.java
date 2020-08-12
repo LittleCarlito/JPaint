@@ -27,9 +27,9 @@ public class Main {
         controller.setup();
         paintCanvas.addMouseListener(new MouseListener(paintCanvas, appState));
         
-        IDrawable test = ShapeHandler.getGroup(ShapeType.RECTANGLE, ShapeColor.GREEN, ShapeColor.MAGENTA, ShapeShadingType.OUTLINE_AND_FILLED_IN, new Point(60, 60), new int[] {60, 60}, paintCanvas);
-        IDrawable shapeTest = ShapeHandler.getShape(ShapeType.RECTANGLE, ShapeColor.BLACK, ShapeColor.MAGENTA, ShapeShadingType.OUTLINE, new Point(150, 60), new int[] {60, 60}, paintCanvas);
-        test.add(shapeTest);
-        test.print();
+//        IDrawable test = ShapeHandler.getGroup(ShapeType.RECTANGLE, ShapeColor.GREEN, ShapeColor.MAGENTA, ShapeShadingType.OUTLINE_AND_FILLED_IN, new Point(60, 60), new int[] {60, 60}, paintCanvas);
+//        IDrawable shapeTest = ShapeHandler.getShape(ShapeType.RECTANGLE, ShapeColor.BLACK, ShapeColor.MAGENTA, ShapeShadingType.OUTLINE, new Point(150, 60), new int[] {60, 60}, paintCanvas);
+//        test.add(shapeTest);
+//        test.print();
     }
 }

@@ -55,27 +55,8 @@ public class IShapeManager {
 		}
 	}
 	
-	public void remove(IShape shape) {
-		boolean shapeListCheck = shapeList.contains(shape);
-		boolean selectListCheck = selectList.contains(shape);
-//		int shapeIndex = shapeList.indexOf(shape);
-//		int selectIndex = selectList.indexOf(shape);
-//		System.out.println("\nShape to undo was in shapeList: " + shapeListCheck + "\nIts index is: " + shapeIndex);
-//		System.out.println("Shape to undo was in shapeList: " + selectListCheck + "\nIts index is: " + selectIndex);
-		if(shapeListCheck) {
-			shapeList.remove(shapeList.indexOf(shape));
-		}
-		else if(selectListCheck) {
-			selectList.remove(selectList.indexOf(shape));
-		}
-	}
-	
 	public PaintCanvasBase getCanvas() {
 		return canvas;
-	}
-	
-	public void add(IShape newShape) {
-		shapeList.add(newShape);
 	}
 	
 	public void select(IShape newShape) {

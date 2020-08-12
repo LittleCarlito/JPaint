@@ -78,6 +78,11 @@ public class ShapeGroup implements IDrawable{
 				result = true;
 			}
 		}
+		if(result) {
+			for(IDrawable drawObject : groupList) {
+				drawObject.setSelect();
+			}
+		}
 		return result;
 	}
 

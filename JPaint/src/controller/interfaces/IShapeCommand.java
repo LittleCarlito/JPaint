@@ -1,7 +1,7 @@
 package controller.interfaces;
 
-import model.interfaces.IShape;
+import workSpace.IDrawable;
 
 public interface IShapeCommand {
-	public void execute(IShape o);
+	public void execute(IDrawable o);
 }

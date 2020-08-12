@@ -8,20 +8,47 @@ import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
+import workSpace.IDrawable;
 
 public class IShapeManager {
-	private List<IShape> shapeList;
-	private List<IShape> selectList;
-	private List<IShape> clipList;
-	private Stack<IShape> deleteList;
+	private List<IDrawable> shapeList;
+	private List<IDrawable> selectList;
+	private List<IDrawable> clipList;
+	private Stack<IDrawable> deleteList;
 	private PaintCanvasBase canvas;
 	
 	public IShapeManager(PaintCanvasBase canvas) {
 		this.canvas = canvas;
-		shapeList = new ArrayList<IShape>();
-		selectList = new ArrayList<IShape>();
-		clipList = new ArrayList<IShape>();
-		deleteList = new Stack<IShape>();
+		shapeList = new ArrayList<IDrawable>();
+		selectList = new ArrayList<IDrawable>();
+		clipList = new ArrayList<IDrawable>();
+		deleteList = new Stack<IDrawable>();
+	}
+	
+	public void selectWithin(IShape selectShape) {
+		for(IDrawable drawObject : shapeList) {
+			if(drawObject.collides(selectShape))
+				selectList.add(drawObject);
+		}
+	}
+	
+	public void addGroup(IDrawable drawObject) {
+		shapeList.add(drawObject);
+	}
+	
+	public void removeGroup(IDrawable drawObject) {
+		boolean shapeListCheck = shapeList.contains(drawObject);
+		boolean selectListCheck = selectList.contains(drawObject);
+//		int shapeIndex = shapeList.indexOf(shape);
+//		int selectIndex = selectList.indexOf(shape);
+//		System.out.println("\nShape to undo was in shapeList: " + shapeListCheck + "\nIts index is: " + shapeIndex);
+//		System.out.println("Shape to undo was in shapeList: " + selectListCheck + "\nIts index is: " + selectIndex);
+		if(shapeListCheck) {
+			shapeList.remove(shapeList.indexOf(drawObject));
+		}
+		else if(selectListCheck) {
+			selectList.remove(selectList.indexOf(drawObject));
+		}
 	}
 	
 	public void remove(IShape shape) {
@@ -49,30 +76,28 @@ public class IShapeManager {
 	
 	public void select(IShape newShape) {
 		newShape.setSelect();
-		ListOutput.execute(newShape.getGroup(), (IShape shape) -> {shape.setSelect();});
-//		newShape.setSelect();
 		selectList.add(newShape);
 	}
 	
-	public List<IShape> getShapes() {
+	public List<IDrawable> getShapes() {
 		return shapeList;
 	}
 	
-	public List<IShape> getSelect() {
+	public List<IDrawable> getSelect() {
 		return selectList;
 	}
 	
-	public List<IShape> getClip(){
+	public List<IDrawable> getClip(){
 		return clipList;
 	}
 	
-	public void cleanShapeList(List<IShape> removeList) {
-		ListOutput.execute(removeList, (IShape shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
+	public void cleanShapeList(List<IDrawable> removeList) {
+		ListOutput.execute(removeList, (IDrawable shape) -> {if(shapeList.contains(shape)) {shapeList.remove(shape);}});
 	}
 
 	public void deSelect() {
-		ListOutput.execute(selectList, (IShape shape) -> {shape.deSelect();});
-		ListOutput.execute(selectList, (IShape shape) -> {shapeList.add(shape);});
+		ListOutput.execute(selectList, (IDrawable shape) -> {shape.setDeselect();});
+		ListOutput.execute(selectList, (IDrawable shape) -> {shapeList.add(shape);});
 		selectList.clear();
 	}
 	
@@ -81,16 +106,25 @@ public class IShapeManager {
 	}
 	
 	public void deleteCommand() {
-		ListOutput.execute(selectList, (IShape shape) -> {deleteList.push(shape);});
+		ListOutput.execute(selectList, (IDrawable shape) -> {deleteList.push(shape);});
 		selectList.clear();
 	}
 	
 	public void print() {
 		CanvasClear.clear();
-		ListOutput.execute(shapeList, ((IShape shape) -> {shape.groupPrint();}));
-		ListOutput.execute(selectList, ((IShape shape) -> {shape.groupPrint();}));
+		ListOutput.execute(shapeList, ((IDrawable shape) -> {shape.print();}));
+		ListOutput.execute(selectList, ((IDrawable shape) -> {shape.print();}));
 //		ListOutput.execute(shapeList, ((IShape shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
 //		ListOutput.execute(selectList, ((IShape shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
 
+	}
+	
+	public void soundOff() {
+		System.out.println("\n----------------------------------------------------------------------------------------");
+		System.out.println("Shape list ids: ");
+		ListOutput.execute(shapeList, ((IDrawable shape) -> {System.out.println("ShapeList ID: " + shape.getID());}));
+		System.out.println("\nSelect list ids: ");
+		ListOutput.execute(selectList, ((IDrawable shape) -> {System.out.println("SelectList ID: " + shape.getID());}));
+		System.out.println("----------------------------------------------------------------------------------------\n");
 	}
 }

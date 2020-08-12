@@ -1,12 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//comment to force commit
-
 import controller.interfaces.IPrinter;
-import controller.singletons.ListOutput;
+import controller.singletons.CollisionDetect;
 import model.interfaces.IShape;
 import workSpace.IDrawable;
 
@@ -22,7 +17,6 @@ public class Shape implements IDrawable, IShape{
 	private int sWidth;
 	private int sHeight;
 	private boolean selected;
-	private List<IShape> groupList;
 	
 	public Shape (int newID, ShapeType newType, ShapeColor newColor, ShapeColor newSecondColor, ShapeShadingType newShade, Point newOrigin, int newWidth, int newHeight) {
 		sID = newID;
@@ -34,22 +28,15 @@ public class Shape implements IDrawable, IShape{
 		sWidth = newWidth;
 		sHeight = newHeight;
 		selected = false;
-		groupList = new ArrayList<IShape>();
 	}
 	
 	@Override
-	public void group(IShape shape) {
-		groupList.add(shape);
-	}
-	
-	@Override
-	public void degroup() {
-		groupList.clear();
-	}
-	
-	@Override
-	public List<IShape> getGroup(){
-		return groupList;
+	public boolean collides(IShape selectShape) {
+		if(CollisionDetect.collides(selectShape, this)) {
+			setSelect();
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
@@ -123,7 +110,6 @@ public class Shape implements IDrawable, IShape{
 	@Override
 	public void setSelect() {
 		select();
-		ListOutput.execute(groupList, (IShape shape) -> {shape.select();});
 	}
 	
 	@Override
@@ -134,7 +120,6 @@ public class Shape implements IDrawable, IShape{
 	@Override
 	public void setDeselect() {
 		deSelect();
-		ListOutput.execute(groupList, (IShape shape) -> {shape.setDeselect();});
 	}
 	
 	@Override
@@ -146,22 +131,6 @@ public class Shape implements IDrawable, IShape{
 	public void print() {
 		if(selected) sOutline.print();
 		sPrinter.print(this);
-	}
-	
-	@Override
-	public void groupPrint() {
-		print();
-		List<IShape> tempList;
-		for(IShape shape : groupList) {
-			tempList = shape.getGroup();
-			if(tempList.size() == 0) {
-				shape.print();
-			}
-			else {
-				shape.groupPrint();
-			}
-		}
-//		ListOutput.execute(groupList, (IShape shape) -> {shape.print();});
 	}
 
 	@Override

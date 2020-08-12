@@ -2,13 +2,13 @@ package controller.event;
 
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
-import model.interfaces.IShape;
+import workSpace.IDrawable;
 
 public class DrawEvent implements IMouseEvent{
 	private IShapeManager shapeManager;
-	private IShape eventShape;
+	private IDrawable eventShape;
 	
-	public DrawEvent(IShape nShape, IShapeManager shapeManager) {
+	public DrawEvent(IDrawable nShape, IShapeManager shapeManager) {
 		this.shapeManager = shapeManager;
 		eventShape = nShape;
 	}
@@ -20,13 +20,13 @@ public class DrawEvent implements IMouseEvent{
 	}
 	
 	private void run() {
-		shapeManager.add(eventShape);
+		shapeManager.addGroup(eventShape);
 		shapeManager.print();
 	}
 
 	@Override
 	public void undo() {
-		shapeManager.remove(eventShape);
+		shapeManager.removeGroup(eventShape);
 		shapeManager.print();
 	}
 

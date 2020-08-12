@@ -7,9 +7,11 @@ import model.ShapeHandler;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
+import workSpace.IDrawable;
 
 public class EventFactory{
-	private static IShape eventShape;
+	private static IDrawable eventShape;
+	private static IShape selectShape;
 	
 	private EventFactory() {
 	}
@@ -20,12 +22,13 @@ public class EventFactory{
 	}
 	
 	public static IMouseEvent getSelect(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
-		getEventShape(startPoint, endPoint, baseCanvas, baseState);
-		return new SelectEvent(eventShape, baseCanvas.getShapeManager());
+		getSelectShape(startPoint, endPoint, baseCanvas, baseState);
+		return new SelectEvent(selectShape, baseCanvas.getShapeManager());
 	}
 	
 	public static IMouseEvent getMove(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
-		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
+//		return new MoveEvent(startPoint, endPoint, baseCanvas.getShapeManager());
+		return null;
 	}
 	
 	private static void getEventShape(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
@@ -34,7 +37,15 @@ public class EventFactory{
 		Point origin = PointConverter.getOrigin(startPoint, endPoint);
 		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
 		// Create shape
-		IShape newShape = ShapeHandler.getShape(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions, baseCanvas);
-		eventShape = newShape;
+		eventShape = ShapeHandler.getGroup(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions, baseCanvas);
+	}
+	
+	private static void getSelectShape(Point startPoint, Point endPoint, PaintCanvasBase baseCanvas, ApplicationState baseState) {
+		// Get shape details
+		PointConverter.getInstance();
+		Point origin = PointConverter.getOrigin(startPoint, endPoint);
+		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
+		// Create shape
+		selectShape = ShapeHandler.getShape(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions, baseCanvas);
 	}
 }

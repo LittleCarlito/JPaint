@@ -3,6 +3,9 @@ package workSpace;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Shape;
+import model.interfaces.IShape;
+
 public class ShapeGroup implements IDrawable{
 	
 	private final int id;
@@ -48,5 +51,33 @@ public class ShapeGroup implements IDrawable{
 	public void setDeselect() {
 		for(IDrawable i : groupList)
 			i.setDeselect();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Shape other = (Shape) obj;
+		if (id == other.getID()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean collides(IShape o) {
+		boolean result = false;
+		for(IDrawable drawObject : groupList) {
+			if(drawObject.collides(o)) {
+				result = true;
+			}
+		}
+		return result;
 	}
 }

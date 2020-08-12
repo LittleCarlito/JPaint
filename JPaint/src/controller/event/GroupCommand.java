@@ -1,45 +1,55 @@
-//package controller.event;
-//
-//import java.util.List;
-//
-//import controller.interfaces.IMouseEvent;
-//import controller.singletons.ListOutput;
-//import model.IShapeManager;
-//import model.interfaces.IShape;
-//
-//public class GroupCommand implements IMouseEvent {
-//	
-//	private IShapeManager shapeManager;
-//	
-//	public GroupCommand(IShapeManager shapeManager) {
-//		this.shapeManager = shapeManager;
-//	}
-//
-//	@Override
-//	public void execute() {
-//		List<IShape> selectList = shapeManager.getSelect();
-//		int selectSize = selectList.size();
-//		IShape leadShape;
-//		if(selectSize > 1) {
-//			leadShape = selectList.get(0);
-//			selectList.remove(0);
-//			ListOutput.execute(selectList, (IShape shape) -> {leadShape.group(shape);});
-//			selectList.clear();
-//			selectList.add(leadShape);
-//		}
-//
-//	}
-//
-//	@Override
-//	public void undo() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void redo() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//}
+package controller.event;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import controller.interfaces.IMouseEvent;
+import model.IShapeManager;
+import workSpace.IDrawable;
+
+public class GroupCommand implements IMouseEvent {
+	
+	private IShapeManager shapeManager;
+	private List<IDrawable> groupList = new ArrayList<IDrawable>();
+	
+	public GroupCommand(IShapeManager shapeManager) {
+		this.shapeManager = shapeManager;
+		for(IDrawable drawObject : shapeManager.getSelect()) {
+			groupList.add(drawObject);
+		}
+		
+	}
+
+	@Override
+	public void execute() {
+		run();
+		CommandHistory.add(this);
+	}
+	
+	private void run() {
+		int groupSize = groupList.size();
+		if(groupSize > 0) {
+			IDrawable leadGroup = groupList.get(0);
+			groupList.remove(0);
+			for(IDrawable drawObject : groupList) {
+				leadGroup.add(drawObject);
+			}
+			shapeManager.clearSelect();
+			shapeManager.addSelect(leadGroup);
+		}
+		shapeManager.soundOff();
+	}
+
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void redo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

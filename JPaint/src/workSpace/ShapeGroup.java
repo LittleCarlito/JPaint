@@ -37,20 +37,20 @@ public class ShapeGroup implements IDrawable{
 
 	@Override
 	public void print() {
-		for(IDrawable i : groupList)
-			i.print();
+		for(IDrawable drawObject : groupList)
+			drawObject.print();
 	}
 
 	@Override
 	public void setSelect() {
-		for(IDrawable i : groupList)
-			i.setSelect();
+		for(IDrawable drawObject : groupList)
+			drawObject.setSelect();
 	}
 
 	@Override
 	public void setDeselect() {
-		for(IDrawable i : groupList)
-			i.setDeselect();
+		for(IDrawable drawObject : groupList)
+			drawObject.setDeselect();
 	}
 	
 	@Override

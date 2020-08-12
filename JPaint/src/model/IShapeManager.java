@@ -113,6 +113,10 @@ public class IShapeManager {
 		selectList.clear();
 	}
 	
+	public void clearSelect() {
+		selectList.clear();
+	}
+	
 	public void clearClip() {
 		clipList.clear();
 	}

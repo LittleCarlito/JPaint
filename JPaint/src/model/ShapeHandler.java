@@ -1,11 +1,10 @@
 package model;
 
 import controller.interfaces.IPrinter;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 import model.printer.PrinterHandler;
 import view.interfaces.PaintCanvasBase;
-import workSpace.GroupCreator;
-import workSpace.IDrawable;
 
 public class ShapeHandler {
 	

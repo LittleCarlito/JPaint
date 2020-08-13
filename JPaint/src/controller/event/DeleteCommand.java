@@ -6,7 +6,7 @@ import java.util.List;
 import controller.interfaces.IMouseEvent;
 import controller.singletons.ListOutput;
 import model.IShapeManager;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class DeleteCommand implements IMouseEvent {
 	private List<IDrawable> deleteList;

@@ -2,7 +2,7 @@ package controller.event;
 
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class DrawEvent implements IMouseEvent{
 	private IDrawable eventShape;

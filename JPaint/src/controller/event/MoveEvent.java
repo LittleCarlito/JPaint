@@ -3,7 +3,7 @@ package controller.event;
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
 import model.Point;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class MoveEvent implements IMouseEvent{
 	private Point _startPoint;

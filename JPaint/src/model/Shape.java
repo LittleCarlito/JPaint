@@ -2,8 +2,8 @@ package model;
 
 import controller.interfaces.IPrinter;
 import controller.singletons.CollisionDetect;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
-import workSpace.IDrawable;
 
 public class Shape implements IDrawable, IShape{
 	private int sID;

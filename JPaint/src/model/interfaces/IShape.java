@@ -5,7 +5,6 @@ import model.Point;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
-import workSpace.IDrawable;
 
 public interface IShape extends IDrawable{
 	public ShapeType getType();

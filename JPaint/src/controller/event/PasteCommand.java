@@ -6,7 +6,7 @@ import java.util.List;
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
 import model.Point;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class PasteCommand implements IMouseEvent {
 

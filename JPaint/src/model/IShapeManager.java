@@ -6,8 +6,8 @@ import java.util.Stack;
 
 import controller.singletons.CanvasClear;
 import controller.singletons.ListOutput;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
-import workSpace.IDrawable;
 
 public class IShapeManager {
 	private static List<IDrawable> shapeList;

@@ -1,8 +1,8 @@
 package model;
 
 import controller.interfaces.IPrinter;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
-import workSpace.IDrawable;
 
 public class NullShape implements IShape {
 

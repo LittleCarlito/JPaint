@@ -5,7 +5,7 @@ import java.util.List;
 
 import controller.interfaces.IMouseEvent;
 import model.IShapeManager;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class GroupCommand implements IMouseEvent {
 	

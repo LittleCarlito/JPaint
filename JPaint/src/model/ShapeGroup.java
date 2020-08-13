@@ -1,10 +1,9 @@
-package workSpace;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.IShapeManager;
-import model.Point;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 
 public class ShapeGroup implements IDrawable{

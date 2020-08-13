@@ -1,4 +1,6 @@
-package workSpace;
+package model;
+
+import model.interfaces.IDrawable;
 
 public class GroupCreator {
 	private static int sid = 100;

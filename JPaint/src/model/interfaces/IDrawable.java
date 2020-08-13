@@ -1,7 +1,6 @@
-package workSpace;
+package model.interfaces;
 
 import model.Point;
-import model.interfaces.IShape;
 
 public interface IDrawable {
 	

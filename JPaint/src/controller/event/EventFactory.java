@@ -4,10 +4,10 @@ import controller.interfaces.IMouseEvent;
 import controller.singletons.PointConverter;
 import model.Point;
 import model.ShapeHandler;
+import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
-import workSpace.IDrawable;
 
 public class EventFactory{
 	private static IDrawable eventShape;

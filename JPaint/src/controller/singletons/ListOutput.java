@@ -3,7 +3,7 @@ package controller.singletons;
 import java.util.List;
 
 import controller.interfaces.IShapeCommand;
-import workSpace.IDrawable;
+import model.interfaces.IDrawable;
 
 public class ListOutput{
 	

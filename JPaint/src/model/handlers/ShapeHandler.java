@@ -25,7 +25,7 @@ public class ShapeHandler {
 	}
 	
 	public static IShape createClone(IShape shape) {
-		IShape shapeClone = ShapeFactory.getShape(shape.getID(), shape.getType(), ShapeColor.BLACK, shape.getSecondColor(), shape.getShade(), shape.getOrigin(), new int[] {shape.getWidth(), shape.getHeight()});
+		IShape shapeClone = ShapeFactory.getShape(shape.getID(), shape.getType(), shape.getColor(), shape.getSecondColor(), shape.getShade(), shape.getOrigin(), new int[] {shape.getWidth(), shape.getHeight()});
 		return outlineShape(shapeClone, shape.getPrinter());
 	}
 	

@@ -16,7 +16,7 @@ public class CommandHistory {
 	
 	public static boolean undo() {
 		boolean result = !undoStack.empty();
-		System.out.println("Undo was successfully clicked\nUndo stack is not empty: " + result);
+//		System.out.println("Undo was successfully clicked\nUndo stack is not empty: " + result);
 		if (result) {
 			IMouseEvent c = undoStack.pop();
 			redoStack.push(c);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.interfaces.IMouseEvent;
 import controller.singletons.ListOutput;
-import model.IShapeManager;
+import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
 
 public class CopyCommand implements IMouseEvent {

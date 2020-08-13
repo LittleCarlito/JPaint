@@ -3,8 +3,9 @@ package controller.event;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.event.handlers.CommandHistory;
 import controller.interfaces.IMouseEvent;
-import model.IShapeManager;
+import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
 
 public class UngroupCommand implements IMouseEvent {

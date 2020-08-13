@@ -2,6 +2,7 @@ package model;
 
 import controller.interfaces.IPrinter;
 import controller.singletons.CollisionDetect;
+import model.handlers.ShapeHandler;
 import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 

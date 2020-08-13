@@ -3,7 +3,7 @@ package controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import controller.event.EventHandler;
+import controller.event.handlers.EventHandler;
 import controller.interfaces.IMouseEvent;
 import model.Point;
 import model.persistence.ApplicationState;

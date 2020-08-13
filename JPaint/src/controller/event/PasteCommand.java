@@ -3,9 +3,10 @@ package controller.event;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.event.handlers.CommandHistory;
 import controller.interfaces.IMouseEvent;
-import model.IShapeManager;
 import model.Point;
+import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
 
 public class PasteCommand implements IMouseEvent {

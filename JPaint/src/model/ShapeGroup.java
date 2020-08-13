@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.handlers.GroupCreator;
+import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 

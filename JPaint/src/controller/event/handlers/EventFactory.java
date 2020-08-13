@@ -1,9 +1,12 @@
-package controller.event;
+package controller.event.handlers;
 
+import controller.event.DrawEvent;
+import controller.event.MoveEvent;
+import controller.event.SelectEvent;
 import controller.interfaces.IMouseEvent;
 import controller.singletons.PointConverter;
 import model.Point;
-import model.ShapeHandler;
+import model.handlers.ShapeHandler;
 import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 import model.persistence.ApplicationState;

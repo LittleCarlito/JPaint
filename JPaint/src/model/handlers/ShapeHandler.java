@@ -1,6 +1,11 @@
-package model;
+package model.handlers;
 
 import controller.interfaces.IPrinter;
+import model.NullShape;
+import model.Point;
+import model.ShapeColor;
+import model.ShapeShadingType;
+import model.ShapeType;
 import model.interfaces.IDrawable;
 import model.interfaces.IShape;
 import model.printer.PrinterHandler;

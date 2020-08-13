@@ -3,7 +3,7 @@ package main;
 import controller.JPaintController;
 import controller.MouseListener;
 import controller.interfaces.IJPaintController;
-import model.IShapeManager;
+import model.handlers.IShapeManager;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;

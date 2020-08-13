@@ -1,4 +1,4 @@
-package controller.event;
+package controller.event.handlers;
 
 import java.util.Stack;
 

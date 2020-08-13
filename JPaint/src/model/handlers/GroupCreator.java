@@ -1,5 +1,6 @@
-package model;
+package model.handlers;
 
+import model.ShapeGroup;
 import model.interfaces.IDrawable;
 
 public class GroupCreator {

@@ -1,11 +1,11 @@
 package controller;
 
-import controller.event.CommandHistory;
 import controller.event.CopyCommand;
 import controller.event.DeleteCommand;
 import controller.event.GroupCommand;
 import controller.event.PasteCommand;
 import controller.event.UngroupCommand;
+import controller.event.handlers.CommandHistory;
 import controller.interfaces.IJPaintController;
 import model.interfaces.IApplicationState;
 import view.EventName;

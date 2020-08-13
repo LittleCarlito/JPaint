@@ -1,5 +1,10 @@
-package model;
+package model.handlers;
 
+import model.Point;
+import model.Shape;
+import model.ShapeColor;
+import model.ShapeShadingType;
+import model.ShapeType;
 import model.interfaces.IShape;
 
 public class ShapeFactory {

@@ -1,7 +1,7 @@
 package controller.event;
 
 import controller.interfaces.IMouseEvent;
-import model.IShapeManager;
+import model.handlers.IShapeManager;
 import model.interfaces.IShape;
 
 public class SelectEvent implements IMouseEvent{

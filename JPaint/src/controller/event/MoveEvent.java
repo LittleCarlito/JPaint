@@ -1,8 +1,9 @@
 package controller.event;
 
+import controller.event.handlers.CommandHistory;
 import controller.interfaces.IMouseEvent;
-import model.IShapeManager;
 import model.Point;
+import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
 
 public class MoveEvent implements IMouseEvent{

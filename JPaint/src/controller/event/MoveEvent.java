@@ -18,13 +18,13 @@ public class MoveEvent implements IMouseEvent{
 		_startPoint = startPoint;
 		_endPoint = endPoint;
 		moveList = new ArrayList<IDrawable>();
+		for(IDrawable drawObject : IShapeManager.getSelect()) {
+			moveList.add(drawObject);
+		}
 	}
 
 	@Override
 	public void execute() {
-		for(IDrawable drawObject : IShapeManager.getSelect()) {
-			moveList.add(drawObject);
-		}
 		run();
 		CommandHistory.add(this);
 	}

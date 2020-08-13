@@ -9,6 +9,7 @@ import workSpace.IDrawable;
 
 public class UngroupCommand implements IMouseEvent {
 	private List<IDrawable> groupList = new ArrayList<IDrawable>();
+	private List<IDrawable> copyList = new ArrayList<IDrawable>();
 	
 	public UngroupCommand() {
 		for(IDrawable drawObject : IShapeManager.getSelect()) {
@@ -23,6 +24,9 @@ public class UngroupCommand implements IMouseEvent {
 	}
 	
 	private void run() {
+		for(IDrawable drawObject : groupList) {
+			copyList.add(drawObject.getClone());
+		}
 		IShapeManager.deSelect();
 		for(IDrawable drawObject : groupList) {
 			drawObject.ungroup();
@@ -33,13 +37,20 @@ public class UngroupCommand implements IMouseEvent {
 
 	@Override
 	public void undo() {
-//		for(IDrawable drawObject : groupList) {
-//			IShapeManager.select
-//		}
+		IShapeManager.cleanShapeList(groupList);
+		for(IDrawable drawObject : copyList) {
+			IShapeManager.addGroup(drawObject);
+		}
+		IShapeManager.print();
+		IShapeManager.soundOff();
 	}
 
 	@Override
 	public void redo() {
+		groupList.clear();
+		for(IDrawable drawObject : copyList) {
+			groupList.add(drawObject);
+		}
 		run();
 	}
 

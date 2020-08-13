@@ -9,11 +9,12 @@ import workSpace.IDrawable;
 
 public class GroupCommand implements IMouseEvent {
 	
-	private List<IDrawable> groupList = new ArrayList<IDrawable>();
+	private List<IDrawable> listToGroup = new ArrayList<IDrawable>();
+	private IDrawable leadGroup;
 	
 	public GroupCommand() {
 		for(IDrawable drawObject : IShapeManager.getSelect()) {
-			groupList.add(drawObject);
+			listToGroup.add(drawObject);
 		}
 		
 	}
@@ -25,11 +26,11 @@ public class GroupCommand implements IMouseEvent {
 	}
 	
 	private void run() {
-		int groupSize = groupList.size();
+		int groupSize = listToGroup.size();
 		if(groupSize > 0) {
-			IDrawable leadGroup = groupList.get(0);
-			groupList.remove(0);
-			for(IDrawable drawObject : groupList) {
+			leadGroup = listToGroup.get(0);
+			listToGroup.remove(0);
+			for(IDrawable drawObject : listToGroup) {
 				leadGroup.add(drawObject);
 			}
 			IShapeManager.clearSelect();
@@ -40,14 +41,15 @@ public class GroupCommand implements IMouseEvent {
 
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
-		
+		leadGroup.ungroup();
+		IShapeManager.print();
+		IShapeManager.soundOff();
 	}
 
 	@Override
 	public void redo() {
-		// TODO Auto-generated method stub
-		
+		listToGroup.add(leadGroup);
+		run();		
 	}
 
 }

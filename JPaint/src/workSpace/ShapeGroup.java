@@ -131,6 +131,7 @@ public class ShapeGroup implements IDrawable{
 	public boolean ungroup() {
 		List<IDrawable> cleanList = new ArrayList<IDrawable>();
 		for(IDrawable drawObject : groupList) {
+			drawObject.setDeselect();
 			if(drawObject.getID() != baseShapeId) {
 				IShapeManager.addGroup(drawObject);
 				cleanList.add(drawObject);

@@ -30,10 +30,6 @@ public class IShapeManager {
 		}
 	}
 	
-	public static void unGroup(List<IDrawable> groupList) {
-		
-	}
-	
 	public static void addSelect(IDrawable newSelect) {
 		selectList.add(newSelect);
 	}

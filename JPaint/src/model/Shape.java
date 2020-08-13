@@ -66,6 +66,10 @@ public class Shape implements IDrawable, IShape{
 		return sSecondColor;
 	}
 	
+	@Override
+	public IPrinter getPrinter() {
+		return sPrinter;
+	}
 	
 	@Override
 	public void setPrinter(IPrinter newPrinter) {
@@ -123,9 +127,14 @@ public class Shape implements IDrawable, IShape{
 
 	@Override
 	public IDrawable getClone() {
-		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
-
+//		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
+		return ShapeHandler.createClone(this);
 	}
+	
+//	@Override
+//	public IDrawable getDeepCopy() {
+//		return ShapeHandler.createClone(this);
+//	}
 
 	@Override
 	public boolean equals(Object obj) {

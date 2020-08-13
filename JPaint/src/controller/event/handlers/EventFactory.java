@@ -6,6 +6,7 @@ import controller.event.SelectEvent;
 import controller.interfaces.IMouseEvent;
 import controller.singletons.PointConverter;
 import model.Point;
+import model.handlers.ShapeFactory;
 import model.handlers.ShapeHandler;
 import model.interfaces.IDrawable;
 import model.interfaces.IShape;
@@ -54,6 +55,6 @@ public class EventFactory{
 		Point origin = PointConverter.getOrigin(startPoint, endPoint);
 		int[] dimensions = PointConverter.getDimension(startPoint, endPoint);
 		// Create shape
-		selectShape = ShapeHandler.getShape(baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions, baseCanvas);
+		selectShape = ShapeFactory.getShape(999999, baseState.getActiveShapeType(), baseState.getActivePrimaryColor(), baseState.getActiveSecondaryColor(), baseState.getActiveShapeShadingType(), origin, dimensions);
 	}
 }

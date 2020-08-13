@@ -26,7 +26,7 @@ public class UngroupCommand implements IMouseEvent {
 	
 	private void run() {
 		for(IDrawable drawObject : groupList) {
-			copyList.add(drawObject.getClone());
+			copyList.add(drawObject);
 		}
 		IShapeManager.deSelect();
 		for(IDrawable drawObject : groupList) {

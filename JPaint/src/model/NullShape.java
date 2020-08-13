@@ -125,4 +125,10 @@ public class NullShape implements IShape {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public IPrinter getPrinter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -100,6 +100,23 @@ public class ShapeGroup implements IDrawable{
 
 	@Override
 	public IDrawable getClone() {
+//		int baseIndex = -1;
+//		IDrawable baseShape;
+//		List<IDrawable> listCopy = new ArrayList<IDrawable>();
+//		for (IDrawable drawObject : groupList) {
+//			if (drawObject.getID() == baseShapeId) {
+//				baseIndex = groupList.indexOf(drawObject);
+//			}
+//			else {
+//				listCopy.add(drawObject);
+//			}
+//		}
+//		baseShape = groupList.get(baseIndex).getClone();
+//		IDrawable groupCopy = GroupCreator.getGroup(baseShape);
+//		for (IDrawable drawObject : listCopy) {
+//			groupCopy.add(drawObject.getClone());
+//		}
+//		return groupCopy;
 		int baseIndex = -1;
 		IDrawable baseShape;
 		List<IDrawable> listCopy = new ArrayList<IDrawable>();
@@ -112,12 +129,33 @@ public class ShapeGroup implements IDrawable{
 			}
 		}
 		baseShape = groupList.get(baseIndex).getClone();
-		IDrawable groupCopy = GroupCreator.getGroup(baseShape);
+		IDrawable groupCopy = GroupCreator.getClone(id, baseShape);
 		for (IDrawable drawObject : listCopy) {
 			groupCopy.add(drawObject.getClone());
 		}
 		return groupCopy;
 	}
+	
+//	@Override
+//	public IDrawable getDeepCopy() {
+//		int baseIndex = -1;
+//		IDrawable baseShape;
+//		List<IDrawable> listCopy = new ArrayList<IDrawable>();
+//		for (IDrawable drawObject : groupList) {
+//			if (drawObject.getID() == baseShapeId) {
+//				baseIndex = groupList.indexOf(drawObject);
+//			}
+//			else {
+//				listCopy.add(drawObject);
+//			}
+//		}
+//		baseShape = groupList.get(baseIndex).getClone();
+//		IDrawable groupCopy = GroupCreator.getClone(id, baseShape);
+//		for (IDrawable drawObject : listCopy) {
+//			groupCopy.add(drawObject.getClone());
+//		}
+//		return groupCopy;
+//	}
 
 	@Override
 	public Point pasteOrigin(Point pastePoint) {

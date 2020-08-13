@@ -6,6 +6,7 @@ public interface IDrawable {
 	
 	public int getID();
 	public IDrawable getClone();
+//	public IDrawable getDeepCopy();
 	public boolean add(IDrawable o);
 	public boolean remove(IDrawable o);
 	public boolean collides(IShape o);

@@ -17,6 +17,4 @@ public interface IShape extends IDrawable{
 	public boolean equals(Object obj);
 	public void setPrinter(IPrinter newPrinter);
 	public void setOutline(IShape outline);
-	public void select();
-	public void deSelect();
 }

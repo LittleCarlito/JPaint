@@ -1,5 +1,8 @@
 package controller.event;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.event.handlers.CommandHistory;
 import controller.interfaces.IMouseEvent;
 import model.Point;
@@ -9,14 +12,19 @@ import model.interfaces.IDrawable;
 public class MoveEvent implements IMouseEvent{
 	private Point _startPoint;
 	private Point _endPoint;
+	private List<IDrawable> moveList;
 	
 	public MoveEvent(Point startPoint, Point endPoint) {
 		_startPoint = startPoint;
 		_endPoint = endPoint;
+		moveList = new ArrayList<IDrawable>();
 	}
 
 	@Override
 	public void execute() {
+		for(IDrawable drawObject : IShapeManager.getSelect()) {
+			moveList.add(drawObject);
+		}
 		run();
 		CommandHistory.add(this);
 	}
@@ -39,7 +47,7 @@ public class MoveEvent implements IMouseEvent{
 	
 	private void moveShapes(Point startPoint, Point endPoint) {
 		Point moveDimension;
-		for(IDrawable drawObject : IShapeManager.getSelect()) {
+		for(IDrawable drawObject : moveList) {
 			moveDimension = new Point((startPoint.getX() - endPoint.getX()), (startPoint.getY() - endPoint.getY()));
 			drawObject.move(moveDimension);
 		}

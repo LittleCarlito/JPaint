@@ -57,13 +57,11 @@ public class NullShape implements IShape {
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void setPrinter(IPrinter newPrinter) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -75,25 +73,11 @@ public class NullShape implements IShape {
 	@Override
 	public void setSelect() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void setDeselect() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void select() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deSelect() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -117,12 +101,10 @@ public class NullShape implements IShape {
 	@Override
 	public void move(Point moveDimension) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public IDrawable getClone() {
-		// TODO Auto-generated method stub
 		return new NullShape();
 	}
 
@@ -141,7 +123,6 @@ public class NullShape implements IShape {
 	@Override
 	public void soundOff() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

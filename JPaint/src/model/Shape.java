@@ -32,25 +32,6 @@ public class Shape implements IDrawable, IShape{
 	}
 	
 	@Override
-	public boolean collides(IShape selectShape) {
-		if(CollisionDetect.collides(selectShape, this)) {
-			setSelect();
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public void setPrinter(IPrinter newPrinter) {
-		sPrinter  = newPrinter;
-	}
-	
-	@Override
-	public void setOutline(IShape outline) {
-		this.sOutline = outline;
-	}
-	
-	@Override
 	public int getID() {
 		return sID;
 	}
@@ -84,6 +65,67 @@ public class Shape implements IDrawable, IShape{
 	public ShapeColor getSecondColor() {
 		return sSecondColor;
 	}
+	
+	
+	@Override
+	public void setPrinter(IPrinter newPrinter) {
+		sPrinter  = newPrinter;
+	}
+	
+	@Override
+	public void setOutline(IShape outline) {
+		this.sOutline = outline;
+	}
+	
+	@Override
+	public void setSelect() {
+		selected = true;
+	}
+	
+	@Override
+	public void setDeselect() {
+		selected = false;
+	}
+	
+	@Override
+	public void move(Point moveDimension) {
+		sOrigin = new Point(sOrigin.getX() - moveDimension.getX(), sOrigin.getY() - moveDimension.getY());
+		sOutline.move(moveDimension);
+	}
+	
+	@Override
+	public Point pasteOrigin(Point pastePoint) {
+		sOrigin = pastePoint;
+		sOutline.pasteOrigin(new Point(pastePoint.getX() - 5, pastePoint.getY() - 5));
+		return new Point(pastePoint.getX()+ (sWidth + 20), pastePoint.getY());
+	}
+	
+	@Override
+	public boolean collides(IShape selectShape) {
+		if(CollisionDetect.collides(selectShape, this)) {
+			setSelect();
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void print() {
+		if(selected) sOutline.print();
+		sPrinter.print(this);
+	}
+	
+	@Override
+	public void soundOff() {
+		System.out.println("Base shape - ID: " + sID);
+	}
+
+
+	@Override
+	public IDrawable getClone() {
+		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
+
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -101,31 +143,11 @@ public class Shape implements IDrawable, IShape{
 			return false;
 		}
 	}
-	
+
 	@Override
-	public void setSelect() {
-		select();
-	}
-	
-	@Override
-	public void select() {
-		selected = true;
-	}
-	
-	@Override
-	public void setDeselect() {
-		deSelect();
-	}
-	
-	@Override
-	public void deSelect() {
-		selected = false;
-	}
-	
-	@Override
-	public void print() {
-		if(selected) sOutline.print();
-		sPrinter.print(this);
+	public boolean ungroup() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -136,35 +158,5 @@ public class Shape implements IDrawable, IShape{
 	@Override
 	public boolean remove(IDrawable o) {
 		return false;
-	}
-
-	@Override
-	public void move(Point moveDimension) {
-		sOrigin = new Point(sOrigin.getX() - moveDimension.getX(), sOrigin.getY() - moveDimension.getY());
-		sOutline.move(moveDimension);
-	}
-
-	@Override
-	public IDrawable getClone() {
-		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
-
-	}
-
-	@Override
-	public Point pasteOrigin(Point pastePoint) {
-		sOrigin = pastePoint;
-		sOutline.pasteOrigin(new Point(pastePoint.getX() - 5, pastePoint.getY() - 5));
-		return new Point(pastePoint.getX()+ (sWidth + 20), pastePoint.getY());
-	}
-
-	@Override
-	public boolean ungroup() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void soundOff() {
-		System.out.println("Base shape - ID: " + sID);
 	}
 }

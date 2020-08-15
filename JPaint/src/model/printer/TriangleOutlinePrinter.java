@@ -4,8 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
-import controller.interfaces.IPrinter;
 import controller.singletons.PointConverter;
+import model.interfaces.IPrinter;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 

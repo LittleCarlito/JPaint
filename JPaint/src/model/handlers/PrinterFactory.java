@@ -1,6 +1,12 @@
-package model.printer;
+package model.handlers;
 
-import controller.interfaces.IPrinter;
+import model.interfaces.IPrinter;
+import model.printer.EllipseOutlinePrinter;
+import model.printer.EllipsePrinter;
+import model.printer.RectangleOutlinePrinter;
+import model.printer.RectanglePrinter;
+import model.printer.TriangleOutlinePrinter;
+import model.printer.TrianglePrinter;
 import view.interfaces.PaintCanvasBase;
 
 public class PrinterFactory {

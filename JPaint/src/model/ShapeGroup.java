@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.singletons.ListOutput;
 import model.handlers.GroupCreator;
 import model.handlers.IShapeManager;
 import model.interfaces.IDrawable;
@@ -42,20 +43,17 @@ public class ShapeGroup implements IDrawable{
 
 	@Override
 	public void print() {
-		for(IDrawable drawObject : groupList)
-			drawObject.print();
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.print();});
 	}
 
 	@Override
 	public void setSelect() {
-		for(IDrawable drawObject : groupList)
-			drawObject.setSelect();
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.setSelect();});
 	}
 
 	@Override
 	public void setDeselect() {
-		for(IDrawable drawObject : groupList)
-			drawObject.setDeselect();
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.setDeselect();});
 	}
 	
 	@Override
@@ -84,39 +82,18 @@ public class ShapeGroup implements IDrawable{
 			}
 		}
 		if(result) {
-			for(IDrawable drawObject : groupList) {
-				drawObject.setSelect();
-			}
+			ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.setSelect();});
 		}
 		return result;
 	}
 
 	@Override
 	public void move(Point moveDimension) {
-		for (IDrawable drawObject : groupList) {
-			drawObject.move(moveDimension);
-		}
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.move(moveDimension);});
 	}
 
 	@Override
 	public IDrawable getClone() {
-//		int baseIndex = -1;
-//		IDrawable baseShape;
-//		List<IDrawable> listCopy = new ArrayList<IDrawable>();
-//		for (IDrawable drawObject : groupList) {
-//			if (drawObject.getID() == baseShapeId) {
-//				baseIndex = groupList.indexOf(drawObject);
-//			}
-//			else {
-//				listCopy.add(drawObject);
-//			}
-//		}
-//		baseShape = groupList.get(baseIndex).getClone();
-//		IDrawable groupCopy = GroupCreator.getGroup(baseShape);
-//		for (IDrawable drawObject : listCopy) {
-//			groupCopy.add(drawObject.getClone());
-//		}
-//		return groupCopy;
 		int baseIndex = -1;
 		IDrawable baseShape;
 		List<IDrawable> listCopy = new ArrayList<IDrawable>();
@@ -130,39 +107,14 @@ public class ShapeGroup implements IDrawable{
 		}
 		baseShape = groupList.get(baseIndex).getClone();
 		IDrawable groupCopy = GroupCreator.getClone(id, baseShape);
-		for (IDrawable drawObject : listCopy) {
-			groupCopy.add(drawObject.getClone());
-		}
+		ListOutput.execute(listCopy, (IDrawable drawObject) -> {groupCopy.add(drawObject.getClone());});
 		return groupCopy;
 	}
-	
-//	@Override
-//	public IDrawable getDeepCopy() {
-//		int baseIndex = -1;
-//		IDrawable baseShape;
-//		List<IDrawable> listCopy = new ArrayList<IDrawable>();
-//		for (IDrawable drawObject : groupList) {
-//			if (drawObject.getID() == baseShapeId) {
-//				baseIndex = groupList.indexOf(drawObject);
-//			}
-//			else {
-//				listCopy.add(drawObject);
-//			}
-//		}
-//		baseShape = groupList.get(baseIndex).getClone();
-//		IDrawable groupCopy = GroupCreator.getClone(id, baseShape);
-//		for (IDrawable drawObject : listCopy) {
-//			groupCopy.add(drawObject.getClone());
-//		}
-//		return groupCopy;
-//	}
 
 	@Override
 	public Point pasteOrigin(Point pastePoint) {
 		Point newOrigin = pastePoint;
-		for(IDrawable drawObject : groupList) {
-			newOrigin = drawObject.pasteOrigin(newOrigin);
-		}
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {drawObject.pasteOrigin(newOrigin);});
 		return newOrigin;
 	}
 
@@ -176,17 +128,22 @@ public class ShapeGroup implements IDrawable{
 				cleanList.add(drawObject);
 			}
 		}
-		for(IDrawable drawObject : cleanList) {
-			groupList.remove(drawObject);
-		}
+		ListOutput.execute(cleanList, (IDrawable drawObject) -> {groupList.remove(drawObject);});
 		return (cleanList.size() > 0 ? true : false);
 	}
 	
 	@Override
 	public void soundOff() {
 		System.out.println("Group ID and baseShape Id: " + id + " " + baseShapeId + "\nContaining Ids: ");
+		ListOutput.execute(groupList, (IDrawable drawObject) -> {System.out.print(drawObject.getID() + "\n");});
+	}
+
+	@Override
+	public void addId(List<Integer> idList) {
 		for(IDrawable drawObject : groupList) {
-			System.out.print(drawObject.getID() + "\n");
+			if(!idList.contains(id))
+				idList.add(id);
+			drawObject.addId(idList);
 		}
 	}
 }

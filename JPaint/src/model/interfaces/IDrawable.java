@@ -1,12 +1,13 @@
 package model.interfaces;
 
+import java.util.List;
+
 import model.Point;
 
 public interface IDrawable {
 	
 	public int getID();
 	public IDrawable getClone();
-//	public IDrawable getDeepCopy();
 	public boolean add(IDrawable o);
 	public boolean remove(IDrawable o);
 	public boolean collides(IShape o);
@@ -17,4 +18,5 @@ public interface IDrawable {
 	public boolean ungroup();
 	public void print();
 	public void soundOff();
+	public void addId(List<Integer> idList);
 }

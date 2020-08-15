@@ -1,7 +1,9 @@
 package model;
 
-import controller.interfaces.IPrinter;
+import java.util.List;
+
 import model.interfaces.IDrawable;
+import model.interfaces.IPrinter;
 import model.interfaces.IShape;
 
 public class NullShape implements IShape {
@@ -129,6 +131,10 @@ public class NullShape implements IShape {
 	public IPrinter getPrinter() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addId(List<Integer> idList) {
 	}
 
 }

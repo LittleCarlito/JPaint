@@ -76,6 +76,23 @@ public class IShapeManager {
 			}
 		}
 	}
+	
+	public static void cleanById(List<Integer> idList) {
+		List<IDrawable> deleteList = new ArrayList<IDrawable>();
+		for(int i : idList) {
+			for(IDrawable d1 : shapeList) {
+				if (d1.getID() == i) {
+					deleteList.add(d1);
+				}
+			}
+			for(IDrawable d2 : selectList) {
+				if (d2.getID() == i) {
+					deleteList.add(d2);
+				}
+			}
+		}
+		cleanShapeList(deleteList);
+	}
 
 	public static void deSelect() {
 		ListOutput.execute(selectList, (IDrawable shape) -> {shape.setDeselect();});

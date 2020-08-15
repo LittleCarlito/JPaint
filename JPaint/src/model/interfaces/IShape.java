@@ -1,6 +1,5 @@
 package model.interfaces;
 
-import controller.interfaces.IPrinter;
 import model.Point;
 import model.ShapeColor;
 import model.ShapeShadingType;

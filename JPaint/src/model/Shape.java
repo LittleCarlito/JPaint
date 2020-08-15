@@ -1,9 +1,11 @@
 package model;
 
-import controller.interfaces.IPrinter;
+import java.util.List;
+
 import controller.singletons.CollisionDetect;
 import model.handlers.ShapeHandler;
 import model.interfaces.IDrawable;
+import model.interfaces.IPrinter;
 import model.interfaces.IShape;
 
 public class Shape implements IDrawable, IShape{
@@ -127,14 +129,8 @@ public class Shape implements IDrawable, IShape{
 
 	@Override
 	public IDrawable getClone() {
-//		return ShapeHandler.getGroup(sType, sColor, sSecondColor, sShade, sOrigin, new int[] {sWidth, sHeight}, sPrinter.getCanvas());
 		return ShapeHandler.createClone(this);
 	}
-	
-//	@Override
-//	public IDrawable getDeepCopy() {
-//		return ShapeHandler.createClone(this);
-//	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -167,5 +163,10 @@ public class Shape implements IDrawable, IShape{
 	@Override
 	public boolean remove(IDrawable o) {
 		return false;
+	}
+
+	@Override
+	public void addId(List<Integer> idList) {
+//		idList.add(sID);
 	}
 }

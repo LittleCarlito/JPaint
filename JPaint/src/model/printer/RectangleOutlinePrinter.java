@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
-import controller.interfaces.IPrinter;
+import model.interfaces.IPrinter;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 

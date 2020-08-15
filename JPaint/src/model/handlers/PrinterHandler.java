@@ -1,7 +1,7 @@
-package model.printer;
+package model.handlers;
 
-import controller.interfaces.IPrinter;
 import model.ShapeType;
+import model.interfaces.IPrinter;
 import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 

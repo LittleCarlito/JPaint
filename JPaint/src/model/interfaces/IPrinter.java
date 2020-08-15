@@ -1,6 +1,5 @@
-package controller.interfaces;
+package model.interfaces;
 
-import model.interfaces.IShape;
 import view.interfaces.PaintCanvasBase;
 
 public interface IPrinter {

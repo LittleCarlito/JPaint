@@ -11,11 +11,13 @@ import model.interfaces.IDrawable;
 public class UngroupCommand implements IMouseEvent {
 	private List<IDrawable> groupList = new ArrayList<IDrawable>();
 	private List<IDrawable> copyList = new ArrayList<IDrawable>();
+	private List<Integer> idList = new ArrayList<Integer>();
 	
 	public UngroupCommand() {
 		for(IDrawable drawObject : IShapeManager.getSelect()) {
 			groupList.add(drawObject);
 			copyList.add(drawObject.getClone());
+			drawObject.addId(idList);
 		}
 	}
 
@@ -26,9 +28,6 @@ public class UngroupCommand implements IMouseEvent {
 	}
 	
 	private void run() {
-//		for(IDrawable drawObject : groupList) {
-//			copyList.add(drawObject);
-//		}
 		IShapeManager.deSelect();
 		for(IDrawable drawObject : groupList) {
 			drawObject.ungroup();
@@ -39,7 +38,7 @@ public class UngroupCommand implements IMouseEvent {
 
 	@Override
 	public void undo() {
-		IShapeManager.cleanShapeList(groupList);
+		IShapeManager.cleanById(idList);
 		for(IDrawable drawObject : copyList) {
 			IShapeManager.addGroup(drawObject);
 		}

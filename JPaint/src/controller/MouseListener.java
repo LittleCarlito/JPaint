@@ -11,7 +11,6 @@ import view.interfaces.PaintCanvasBase;
 
 public class MouseListener extends MouseAdapter{
 	
-	// Wow i changed something
 	private Point startPoint;
 	private Point endPoint;
 	private PaintCanvasBase paintCanvas;

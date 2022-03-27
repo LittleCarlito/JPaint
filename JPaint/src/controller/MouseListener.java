@@ -12,7 +12,7 @@ import view.interfaces.PaintCanvasBase;
 public class MouseListener extends MouseAdapter{
 	
 	private Point startPoint;
-	private Point endPoint; 
+	private Point endPoint;
 	private PaintCanvasBase paintCanvas;
 	private ApplicationState appState;
 	
